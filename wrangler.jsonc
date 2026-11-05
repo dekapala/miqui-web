@@ -3,7 +3,7 @@
   "name": "miqui-web",
   "compatibility_date": "2026-11-05",
   "assets": {
-    "directory": "./dist",
+    "directory": "./boceto-b",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   }

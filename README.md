@@ -19,7 +19,9 @@ No requiere secretos, base de datos ni Pages Functions para mostrar el prototipo
 
 ## Cloudflare Workers (alternativa)
 
-El archivo `wrangler.jsonc` configura los archivos estáticos. En Workers Builds usar `npm run build` como build command y `npx wrangler deploy` como deploy command. Para Pages usar la configuración de la tabla anterior; no ejecutar `wrangler deploy`.
+El archivo `wrangler.jsonc` publica directamente `boceto-b/`, que ya contiene los archivos estáticos finales. En Workers Builds usar `npm run build` como build command para validar y `npx wrangler deploy` como deploy command. Si el build command está vacío, el deploy también funciona: no depende de que exista `dist/`. Para Pages usar la configuración de la tabla anterior; no ejecutar `wrangler deploy`.
+
+Si aparece el error `assets.directory ... /dist does not exist`, se está desplegando una configuración anterior que dependía de generar `dist/`. Desplegar el último commit de `main`, con `assets.directory` igual a `./boceto-b`.
 
 ## Verificación local
 
