@@ -1,0 +1,7 @@
+Guardá acá las fotos con estos nombres (jpg, png o webp). Las que falten se ven como recuadro rosa.
+
+hero-1, hero-2, hero-3          → portada (la 1 es la grande: su mejor torta)
+linea-tortas, linea-porciones, linea-mini   → las 3 líneas de productos
+estilo-clasica, estilo-vintage, estilo-perso → opciones de estilo de torta
+finde-1 a finde-4               → porciones del menú del finde
+resena-1 a resena-4             → capturas de la destacada "Ustedes"

@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miqui Pastelería · B</title>
+<link rel="icon" href="monograma.svg" type="image/svg+xml">
+<script>if(innerWidth<1024&&!/[?&]v=escritorio/.test(location.search))location.replace("index.html"+location.search+location.hash)</script>
+<meta name="description" content="Boceto (escritorio): tortas por encargo y porciones del finde en Lomas de Zamora. Retiro por domicilio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500..800;1,500..700&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1615735486329-c61cd40bfcc6?w=900&q=70&auto=format&fit=crop" fetchpriority="high">
+<style>
+:root{
+  /* Identidad B: borgoña · frambuesa · crema (monocromática) */
+  --paper:#FAEFE8; --white:#FFF9F5; --ink:#4A1424; --ink-soft:#7A3E4A; --cherry:#922738; --cherry-dk:#711627;
+  --rosa:#F2D0D0; --celeste:#F4E4DC; --manteca:#F2DBC7; --line:#EBD3CB; --frambuesa:#C05661; --ok:#286348; --ok-bg:#E3F0E7; --warn:#7A5212; --warn-bg:#F8ECD3;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif; --sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  --r-lg:32px; --r-md:18px; --r-sm:12px; --float:0 18px 50px rgba(59,31,36,.16); --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-padding-top:96px}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cherry);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 48px}
+.display{font-family:var(--display);font-weight:600;line-height:1.02;letter-spacing:-.025em}
+.display em{font-style:italic;font-weight:500;color:var(--cherry)}
+.display{font-optical-sizing:auto}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.muted{color:var(--ink-soft)}
+.small{font-size:15px}
+.h2{font-size:52px}
+.price{font-weight:600;font-variant-numeric:tabular-nums}
+.tag{position:absolute;left:14px;bottom:14px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(255,248,241,.9);color:var(--ink-soft)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 28px;border-radius:99px;font-weight:600;font-size:16px;background:var(--cherry);color:var(--paper);transition:background .15s,transform .15s}
+.btn:hover{background:var(--cherry-dk)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.ghost:hover{background:rgba(59,31,36,.06)}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn.ghost[disabled]{opacity:.6}
+.link{font-weight:600;color:var(--cherry);text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.chip{white-space:nowrap;min-height:44px;padding:0 18px;border-radius:99px;box-shadow:inset 0 0 0 1.5px var(--line);font-size:15px;font-weight:500;background:var(--white);transition:background .15s}
+.chip:hover{background:#FBEFEF}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:30;background:rgba(255,248,241,.9);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+.hdr.scrolled{border-color:var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:40px;height:80px}
+.brand{display:flex;align-items:baseline;gap:10px;min-height:44px}
+.brand b{font:italic 600 36px/1 var(--display);letter-spacing:-.02em;color:var(--cherry-dk)}
+.brand>span:not(.wm){font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cherry)}
+.wm{position:relative;display:inline-block;padding-bottom:6px}
+.brand{align-items:center!important}
+.brand .logo{height:50px;width:auto;color:var(--ink);display:block;flex:none}
+.pside .brand .logo{color:var(--paper);height:42px}
+.foot .brand .logo{height:56px}
+.ptop .logo{height:30px;color:var(--paper)}
+.wm .swash{position:absolute;right:-4%;bottom:-2px;width:72%;height:8px;color:var(--cherry-dk)}
+.pside .wm .swash{color:#E8B9C1}
+.nav{display:flex;gap:6px;margin-right:auto}
+.nav button{white-space:nowrap;min-height:44px;padding:0 16px;border-radius:99px;font-weight:500;color:var(--ink-soft)}
+.nav button:hover{color:var(--ink);background:rgba(59,31,36,.05)}
+.nav [aria-current="page"]{color:var(--ink);background:var(--rosa)}
+.demo{white-space:nowrap;font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;background:var(--warn-bg);color:var(--warn)}
+.cartbtn{white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:99px;background:var(--ink);color:var(--paper);font-weight:600}
+.cartbtn .n{min-width:26px;height:26px;border-radius:99px;background:var(--cherry);display:grid;place-items:center;font-size:13px;padding:0 6px}
+.cartbtn.bump{animation:bump .35s}
+@keyframes bump{40%{transform:scale(1.06)}}
+
+.view{display:none}
+.view.on{display:block}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:5fr 6fr;gap:56px;align-items:center;padding:56px 0 40px}
+.hero h1{font-size:clamp(64px,min(7vw,11vh),96px)}
+.hero p.sub{font-size:20px;color:var(--ink-soft);margin:22px 0 32px;max-width:30ch}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:flex;gap:22px;margin-top:28px;font-size:15px;color:var(--ink-soft)}
+.facts span::before{content:"✓ ";color:var(--ok);font-weight:700}
+.collage{position:relative;height:min(620px,72vh);min-height:480px}
+.collage .c{position:absolute;border-radius:var(--r-lg);overflow:hidden;background:var(--rosa);box-shadow:0 20px 50px rgba(59,31,36,.12)}
+.collage .c img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.collage .c2:hover img{transform:scale(1.04)}
+.c1 img{object-position:50% 55%}
+.c1 .tag{top:14px;bottom:auto;left:14px}
+.c2 img{object-position:50% 55%}
+.c1{left:10%;top:6%;width:90%;height:64%}
+.c2{left:0;bottom:2%;width:36%;height:46%;border:8px solid var(--paper)}
+.seal{position:absolute;right:20px;bottom:calc(30% + 20px);width:128px;height:128px;border-radius:50%;background:var(--manteca);display:grid;place-items:center;box-shadow:0 10px 30px rgba(59,31,36,.12)}
+.seal svg{position:absolute;inset:0;width:100%;height:100%}
+.seal text{font:600 12.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;fill:var(--ink)}
+.seal svg.mono{position:relative;inset:auto;width:58px;height:auto;color:var(--cherry-dk);transform:translateX(2px)}
+.foot .mono{display:block;width:64px;height:auto;color:var(--cherry-dk);margin:14px 0 4px}
+
+/* Sections */
+.sec{padding:96px 0 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px}
+.sec-head .chips{display:flex;gap:8px;flex-wrap:wrap}
+.scallop{display:block;width:100%;height:18px;color:var(--manteca);margin-top:96px}
+.band{background:var(--manteca)}
+/* festón inferior: mismo path invertido */
+.scallop.inv{transform:rotate(180deg);margin-top:-1px}
+.band .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;padding-top:56px;padding-bottom:72px;align-items:center}
+.cierre{font-size:17px;margin:14px 0 28px}
+.cierre b{font-weight:600}
+.preview-menu{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:center}
+.pm-list{list-style:none}
+.pm-list button{width:100%;display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:baseline;text-align:left;padding:14px 4px;border-bottom:1px solid rgba(59,31,36,.14);min-height:56px;transition:padding .2s}
+.pm-list button .n{font:600 24px/1 var(--display);color:var(--ink-soft)}
+.pm-list button[aria-current="true"]{padding-left:12px}
+.pm-list button[aria-current="true"] .n{color:var(--cherry)}
+.pm-list button span:nth-child(2){font-weight:600}
+.pm-photo{aspect-ratio:3/4;border-radius:200px 200px var(--r-lg) var(--r-lg);overflow:hidden;background:var(--rosa);position:relative}
+.pm-photo img{width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+
+/* Grid cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 28px}
+.card{text-align:left;display:block;width:100%}
+.ph{position:relative;border-radius:var(--r-md);overflow:hidden;background:var(--rosa);aspect-ratio:4/5}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .ph img,.card:focus-visible .ph img{transform:scale(1.05)}
+.card .ver{position:absolute;right:12px;bottom:12px;padding:8px 14px;border-radius:99px;background:var(--paper);font-size:14px;font-weight:600;opacity:0;transform:translateY(6px);transition:.2s}
+.card:hover .ver,.card:focus-visible .ver{opacity:1;transform:none}
+.card h3{font:600 19px/1.25 var(--sans);margin-top:14px}
+.card .meta{font-size:15px;color:var(--ink-soft)}
+
+/* Split blocks */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r-lg);overflow:hidden}
+.split .ph{border-radius:0;aspect-ratio:auto;min-height:460px}
+.split .txt{padding:64px;display:flex;flex-direction:column;justify-content:center;gap:16px;align-items:flex-start}
+.celeste{background:var(--celeste)}
+.rosa{background:var(--rosa)}
+
+/* Steps */
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.paso .num{font:600 72px/1 var(--display);color:var(--cherry)}
+.paso b{display:block;font-size:20px;margin:12px 0 6px}
+
+/* Footer */
+.foot{margin-top:120px;border-top:1px solid var(--line)}
+.foot .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-top:56px;padding-bottom:48px}
+.firma{font:italic 500 44px/1 var(--display);color:var(--cherry);margin-top:6px}
+.foot h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.foot p,.foot a,.foot button{display:block;font-size:15px}
+
+/* Page heads */
+.phead{padding:56px 0 36px;display:flex;justify-content:space-between;align-items:end;gap:24px}
+.phead h1{font-size:76px}
+
+/* Finde page */
+.finde{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
+.fhead{background:var(--manteca);border-radius:var(--r-lg);padding:36px 40px;margin:40px 0 12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px 24px}
+.fhead h1{font-size:clamp(48px,4.4vw,64px);margin:8px 0 6px}
+.fhead .btn{white-space:nowrap;flex:none}
+.menu{list-style:none}
+.item{display:grid;grid-template-columns:52px 120px 1fr;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+.item .n{font:600 32px/1 var(--display);color:var(--ink-soft)}
+.item img{width:120px;height:120px;border-radius:50%;object-fit:cover;transition:transform .3s}
+.item:hover img{transform:scale(1.05) rotate(-2deg)}
+.item .row{display:flex;align-items:baseline;gap:10px}
+.item .row h3{font:600 20px/1.25 var(--sans)}
+.item .row i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px)}
+.item .bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.stock{font-size:13px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--ok-bg);color:var(--ok)}
+.stock.poco{background:var(--warn-bg);color:var(--warn)}
+.stock.no{background:#F2E4E4;color:#8A2E2E}
+.add{min-height:44px;padding:0 20px;border-radius:99px;background:var(--ink);color:var(--paper);font-weight:600;font-size:15px}
+.add:hover{background:#2a1418}
+.stepper{display:inline-flex;align-items:center;gap:4px;background:var(--white);border-radius:99px;box-shadow:inset 0 0 0 1.5px var(--line)}
+.stepper button{width:44px;height:44px;font-size:20px;font-weight:600;border-radius:99px}
+.stepper button:hover{background:#FBEFEF}
+.stepper button[disabled]{opacity:.3}
+.stepper output{min-width:22px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.side{position:sticky;top:104px;background:var(--white);border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px var(--line),var(--float);padding:28px;margin-top:40px}
+.side h2{font:600 30px/1.1 var(--display);margin-bottom:16px}
+.vacio{padding:24px;text-align:center;color:var(--ink-soft);border:1.5px dashed var(--line);border-radius:var(--r-md)}
+.cerrado{padding:16px 18px;border-radius:var(--r-md);background:#F2E4E4;color:#8A2E2E;font-weight:600;margin-bottom:12px}
+.aviso{font-size:15px;padding:12px 14px;border-radius:var(--r-sm);background:var(--warn-bg);color:var(--warn);margin-bottom:16px}
+
+/* Forms */
+.fieldset{border:0;margin-bottom:22px}
+.fieldset legend{font-weight:600;margin-bottom:10px}
+.opts{display:grid;gap:8px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opts.three{grid-template-columns:repeat(3,1fr)}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt label{display:flex;flex-direction:column;justify-content:center;min-height:56px;padding:10px 14px;border-radius:var(--r-sm);background:var(--white);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;line-height:1.3;transition:box-shadow .15s,background .15s}
+.opt label:hover{box-shadow:inset 0 0 0 1.5px var(--ink-soft)}
+.opt label small{font-size:13px;color:var(--ink-soft)}
+.opt input:checked+label{box-shadow:inset 0 0 0 2px var(--cherry);background:#FCEEF0}
+.opt input:focus-visible+label{outline:3px solid var(--cherry);outline-offset:2px}
+.opt input:disabled+label{opacity:.5;cursor:not-allowed;background:repeating-linear-gradient(-45deg,var(--white) 0 6px,#F4ECE8 6px 12px)}
+.campo{margin-bottom:14px}
+.campo label{display:block;font-weight:600;margin-bottom:6px;font-size:15px}
+.campo input,.campo textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:var(--r-sm);border:0;box-shadow:inset 0 0 0 1.5px var(--line);background:var(--white);font-size:16px}
+.campo input:focus,.campo textarea:focus{outline:none;box-shadow:inset 0 0 0 2px var(--cherry)}
+.hint{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);margin-top:4px}
+.resumen{border-radius:var(--r-md);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);padding:4px 16px;margin-bottom:18px}
+.resumen div{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.resumen div:last-child{border:0}
+.resumen dt{color:var(--ink-soft)}
+.totbar{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}
+.totbar b{font-size:24px;font-variant-numeric:tabular-nums}
+.totbar span{font-size:14px;color:var(--ink-soft)}
+
+/* Modals */
+dialog.modal{margin:auto;border:0;border-radius:var(--r-lg);background:var(--paper);color:var(--ink);padding:0;width:min(560px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow:hidden;box-shadow:var(--float);display:none;flex-direction:column}
+dialog.modal[open]{display:flex}
+dialog.modal.wide{width:min(980px,calc(100vw - 48px))}
+dialog.modal.xl{width:min(1160px,calc(100vw - 48px));height:min(820px,calc(100dvh - 48px))}
+dialog::backdrop{background:rgba(59,31,36,.5);backdrop-filter:blur(3px)}
+@media(prefers-reduced-motion:no-preference){dialog.modal[open]{animation:pop .28s cubic-bezier(.2,.8,.2,1)}dialog[open]::backdrop{animation:fade .3s}}
+@keyframes pop{from{transform:translateY(16px) scale(.98);opacity:0}}
+@keyframes fade{from{opacity:0}}
+.m-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px 14px 28px;border-bottom:1px solid var(--line)}
+.m-head h2{font:600 20px/1.2 var(--sans)}
+.x{width:44px;height:44px;border-radius:50%;font-size:22px;display:grid;place-items:center;background:var(--white);box-shadow:inset 0 0 0 1px var(--line);flex:none}
+.x:hover{background:#FBEFEF}
+.m-body{overflow-y:auto;padding:28px;flex:1}
+.m-foot{padding:16px 28px 22px;border-top:1px solid var(--line)}
+.qv{display:grid;grid-template-columns:1.05fr 1fr;height:min(620px,calc(100dvh - 48px));overflow:hidden}
+.qv .ph{border-radius:0;aspect-ratio:auto;height:100%}
+.qv .info{padding:40px;overflow-y:auto;display:flex;flex-direction:column}
+.qv h2{font-size:44px;margin:8px 0 12px}
+.sizes{display:grid;gap:8px;margin:20px 0}
+.sizes div{display:flex;justify-content:space-between;padding:14px 16px;border-radius:var(--r-sm);background:var(--white);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* Configurator */
+.conf{display:grid;grid-template-columns:440px 1fr;min-height:0;flex:1;overflow:hidden}
+.conf-prev{background:var(--rosa);padding:28px;display:flex;flex-direction:column;gap:18px;overflow-y:auto}
+.conf-prev .pv{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:1}
+.conf-prev .pv img{width:100%;height:100%;object-fit:cover;filter:brightness(.93)}
+.conf-prev .pv p{position:absolute;left:0;right:0;top:42%;text-align:center;font:italic 500 34px/1.1 var(--display);color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.45);padding:0 20px}
+.conf-prev h2{font-size:36px}
+.picked{display:flex;flex-wrap:wrap;gap:6px}
+.picked span{font-size:13px;font-weight:600;padding:5px 11px;border-radius:99px;background:rgba(255,253,251,.75)}
+.conf-main{display:flex;flex-direction:column;min-height:0}
+.conf-scroll{overflow-y:auto;padding:28px 36px;flex:1}
+.blk{padding:18px 0;border-bottom:1px solid var(--line)}
+.blk:last-child{border:0}
+.blk h3{display:flex;align-items:center;gap:12px;font:600 30px/1.1 var(--display)}
+.blk-btn{flex:1;display:flex;align-items:baseline;gap:12px;text-align:left;min-height:48px;font:inherit}
+.blk-btn::after{content:"Editar";margin-left:auto;font:600 14px var(--sans);color:var(--cherry);text-decoration:underline;text-underline-offset:3px}
+.blk.open .blk-btn::after{content:none}
+.blk .sumtxt{color:var(--ink-soft);font-size:15px;padding-left:34px}
+.blk.open .sumtxt{display:none}
+.blk-body{padding-top:18px}
+.blk:not(.open) .blk-body{display:none}
+.blk:not(.open) h3{font-size:24px;color:var(--ink-soft)}
+.cont{margin-top:20px}
+.blk h3 .k{font-size:22px;color:var(--cherry)}
+.blk h3 .ok{margin-left:auto;font:600 13px var(--sans);color:var(--ok);background:var(--ok-bg);padding:4px 10px;border-radius:99px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal .dh{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);text-align:center;padding-bottom:4px}
+.cal .opt label{align-items:center;text-align:center;min-height:72px;padding:6px 2px}
+.cal .opt label b{font:600 22px/1 var(--display)}
+.cal .opt label small{font-size:11px;font-weight:600}
+.cal .vac{min-height:72px}
+.conf-foot{display:grid;grid-template-columns:auto auto 1fr;gap:28px;align-items:center;padding:16px 36px 20px;border-top:1px solid var(--line);background:var(--paper)}
+.conf-foot span{display:block;font-size:13px;color:var(--ink-soft)}
+.conf-foot b{font-size:24px;font-variant-numeric:tabular-nums}
+.conf-foot .falta{grid-column:1/-1;font-size:13px;color:var(--ink-soft);margin-top:-8px}
+
+/* Confirmation */
+.ok-ico{width:72px;height:72px;border-radius:50%;background:var(--rosa);display:grid;place-items:center;font-size:32px;margin:0 auto 14px}
+.wa{background:#E3F3E3;border-radius:18px 18px 18px 4px;padding:14px 16px;font-size:15px;white-space:pre-line;margin:16px 0 6px;text-align:left}
+.wa-cap{font-size:12px;color:var(--ink-soft);text-align:left}
+
+/* Stories (phone-sized player) */
+dialog.st{margin:auto;border:0;background:transparent;padding:0;overflow:visible;max-height:100dvh}
+.st-shell{display:flex;align-items:center;gap:24px}
+.st-arrow{width:56px;height:56px;border-radius:50%;background:rgba(255,248,241,.92);font-size:26px;display:grid;place-items:center}
+.st-wrap{position:relative;width:min(420px,46dvh);aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#000;color:#fff}
+.st-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.st-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.45),transparent 20%,transparent 50%,rgba(0,0,0,.72));pointer-events:none}
+.st-bars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;z-index:3}
+.st-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden}
+.st-bars i b{display:block;height:100%;width:0;background:#fff}
+.st-bars i.done b{width:100%}
+.st-top{position:absolute;top:22px;left:14px;right:10px;display:flex;justify-content:space-between;align-items:center;z-index:3;font-weight:600;font-size:14px}
+.st-top .x{background:rgba(0,0,0,.35);box-shadow:none;color:#fff}
+.st-cap{position:absolute;left:22px;right:22px;bottom:26px;z-index:3}
+.st-cap h2{font:600 36px/1.05 var(--display)}
+.st-cap p{margin:6px 0 14px;opacity:.9}
+.st-cap .btn{background:#fff;color:var(--ink)}
+
+/* Panel */
+.panel{display:grid;grid-template-columns:260px 1fr;min-height:100dvh}
+.pside{position:sticky;top:0;height:100dvh;background:var(--ink);color:var(--paper);padding:28px 18px;display:flex;flex-direction:column;gap:6px}
+.pside .brand{padding:0 10px 22px}
+.pside .brand b{font-size:30px;color:var(--paper)}
+.pside .brand>span:not(.wm){color:#E8B9C1}
+.pside nav{display:grid;gap:4px}
+.pside nav button{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 14px;border-radius:14px;font-weight:500;text-align:left;color:#EBD9DC}
+.pside nav button:hover{background:rgba(255,255,255,.07)}
+.pside nav [aria-current="page"]{background:var(--paper);color:var(--ink);font-weight:600}
+.pside svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pside .bottom{margin-top:auto;display:grid;gap:6px}
+.pside .bottom button{min-height:44px;text-align:left;padding:0 14px;color:#EBD9DC;text-decoration:underline;text-underline-offset:3px;font-size:15px}
+.pside .demo{margin:0 10px 8px;justify-self:start}
+.pmain{padding:40px 48px 60px;min-width:0}
+.ptitle{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+.ptitle h1{font-size:52px}
+.dias-p{display:flex;gap:8px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.stat{background:var(--white);border-radius:var(--r-md);box-shadow:inset 0 0 0 1px var(--line);padding:18px 20px}
+.stat b{display:block;font:600 30px/1.15 var(--sans);letter-spacing:-.01em}
+.stat span{font-size:14px;color:var(--ink-soft)}
+.kanban{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:start}
+.col{background:#F7EEE8;border-radius:var(--r-md);padding:12px;min-height:200px}
+.col h2{display:flex;justify-content:space-between;align-items:center;font:600 15px/1 var(--sans);padding:8px 6px 14px}
+.col h2 span{font-size:13px;background:var(--white);border-radius:99px;padding:3px 9px}
+.col .vacio{font-size:14px;padding:18px 8px}
+.order{background:var(--white);border-radius:16px;box-shadow:0 1px 0 var(--line),inset 0 0 0 1px var(--line);padding:14px;margin-bottom:10px}
+.order.nuevo{box-shadow:inset 0 0 0 2px var(--cherry)}
+.o-top{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center}
+.o-top img{width:48px;height:48px;border-radius:12px;object-fit:cover}
+.o-top h3{font:600 16px/1.2 var(--sans)}
+.o-top .hora{font-size:13px;color:var(--ink-soft)}
+.o-item{font-size:14px;margin:10px 0 8px;line-height:1.35}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--celeste)}
+.badge.pago{background:var(--ok-bg);color:var(--ok)}
+.badge.debe{background:var(--warn-bg);color:var(--warn)}
+.badge.new{background:var(--cherry);color:var(--paper)}
+.o-acts{display:grid;grid-template-columns:1fr 44px 44px;gap:6px}
+.o-acts .btn{min-height:44px;padding:0 10px;font-size:14px}
+.ico{min-height:44px;border-radius:12px;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line);display:grid;place-items:center}
+.ico:hover{background:#FBEFEF}
+.ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.undo{font-size:13px;color:var(--ink-soft);margin-top:4px;text-decoration:underline;min-height:44px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.dayh{font:600 30px/1.1 var(--display);margin:28px 0 12px}
+.dayh::first-letter{text-transform:uppercase}
+.dayh:first-child{margin-top:0}
+.rows{display:grid;gap:10px}
+.rowo{display:grid;grid-template-columns:110px 56px minmax(0,1.6fr) minmax(0,1fr) 300px;gap:18px;align-items:center;background:var(--white);border-radius:var(--r-md);box-shadow:inset 0 0 0 1px var(--line);padding:14px 18px}
+.rowo.nuevo{box-shadow:inset 0 0 0 2px var(--cherry)}
+.rowo .t{font:600 22px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.rowo img{width:56px;height:56px;border-radius:12px;object-fit:cover}
+.rowo h3{font:600 17px/1.2 var(--sans)}
+.rowo .it{font-size:14px;color:var(--ink-soft);line-height:1.35}
+.rowo .badges{margin:0}
+.rowo .acts{display:flex;flex-direction:column;gap:2px}
+.rowo .undo{align-self:flex-start;min-height:32px}
+.vista{display:flex;gap:6px;margin-right:12px}
+.prodlist{list-style:none;display:grid;gap:8px}
+.prodlist label{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-md);background:var(--white);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;min-height:64px}
+.prodlist input{width:24px;height:24px;accent-color:var(--cherry);flex:none}
+.prodlist .cant{margin-left:auto;font:600 30px/1 var(--display)}
+.prodlist input:checked~span{text-decoration:line-through;opacity:.55}
+.brief{background:var(--white);border-radius:var(--r-md);box-shadow:inset 0 0 0 1px var(--line);padding:16px;margin-bottom:10px}
+.brief dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;margin-top:8px}
+.brief dt{color:var(--ink-soft)}
+.switch{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;border-radius:var(--r-md);background:var(--manteca);margin-bottom:20px;max-width:720px}
+.switch b{display:block;font-size:18px}
+.tog{width:72px;height:44px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.tog::after{content:"";position:absolute;top:4px;left:4px;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .2s}
+.tog[aria-checked="true"]{background:var(--ok)}
+.tog[aria-checked="true"]::after{transform:translateX(28px)}
+.stocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:960px}
+.stk{display:flex;align-items:center;gap:14px;padding:14px;border-radius:var(--r-md);background:var(--white);box-shadow:inset 0 0 0 1px var(--line)}
+.stk img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.stk div{flex:1;line-height:1.3}
+.stk small{color:var(--ink-soft)}
+.h3p{font-size:18px;margin-bottom:12px}
+
+/* ===== Mesa dulce orgánica ===== */
+.mesa2{position:relative;isolation:isolate;view-timeline:--mesa block}
+.m-bg{position:absolute;inset:0;width:100%;height:100%;fill:#F6E4DE;z-index:-1}
+.m-line{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--cherry);stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;z-index:0;pointer-events:none}
+.m-in{position:relative;z-index:1}
+.m-photo{position:relative}
+.blob{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 30px rgba(74,20,36,.14))}
+.m-photo .tag{left:16%;bottom:12%}
+.m-spark{position:absolute;left:2%;top:4%;width:44px;height:44px;fill:none;stroke:var(--cherry);stroke-width:3;stroke-linecap:round;z-index:2}
+.m-txt p:not(.eyebrow){color:var(--ink-soft)}
+.mesa2.anim .m-line path{stroke-dasharray:1;stroke-dashoffset:1}
+.mesa2.anim .m-photo{opacity:0;transform:translateY(14px)}
+.mesa2.anim.on .m-photo{animation:md-rise .6s cubic-bezier(.22,1,.36,1) forwards}
+.mesa2.anim.on .m-line path{animation:md-draw 1.6s .2s ease-in-out forwards}
+@supports (animation-timeline:view()){
+  .mesa2.anim .m-line path,.mesa2.anim.on .m-line path{animation:md-draw linear both;animation-timeline:--mesa;animation-range:entry 5% cover 42%}
+}
+@keyframes md-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes md-rise{to{opacity:1;transform:none}}
+.mesa2{margin-top:72px;padding:96px 0 120px}
+.m-line-m{display:none}
+.m-in{max-width:var(--max);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center}
+.m-photo{width:100%;max-width:470px;justify-self:end}
+.m-txt h2{font-size:52px;margin:10px 0 16px}
+.m-txt p:not(.eyebrow){max-width:38ch;margin-bottom:28px;font-size:18px}
+/* Respaldo si la versión escritorio se abre en una ventana angosta (normalmente se redirige a index.html) */
+@media(max-width:767px){
+  body{min-width:0}
+  .wrap{padding:0 16px}
+  .hdr .wrap{gap:10px;height:64px}.nav,.demo .lg{display:none}
+  .hero,.band .wrap,.preview-menu,.finde,.m-in,.split,.pasos,.qv,.conf,.two{grid-template-columns:minmax(0,1fr)!important}
+  .hero h1{font-size:clamp(2.7rem,11vw,4rem)}
+  .collage{height:360px;min-height:0}
+  .grid,#mesas{grid-template-columns:minmax(0,1fr)!important}
+  .steps{grid-template-columns:minmax(0,1fr)!important}.step::after{display:none}
+  .phead{flex-direction:column;align-items:flex-start}.phead h1,.h2,.m-txt h2{font-size:clamp(2.2rem,9vw,3rem)}
+  .f-main{grid-template-columns:minmax(0,1fr)!important;justify-items:center;text-align:center}.f-col::before{display:none}.mm-slot{margin-top:-60px}.f-util{margin:0 16px!important;max-width:none!important}
+  .m-photo{justify-self:center;max-width:320px}
+  .pm-list button{grid-template-columns:36px minmax(0,1fr) auto}
+  .ctas{flex-direction:column}
+}
+/* ===== Footer de marca + Mini Miqui ===== */
+.foot2{--ease:cubic-bezier(.22,1,.36,1);--f-bg:#F5E5DE;position:relative;margin-top:var(--f-top)}
+.f-wave{display:block;width:100%;height:var(--f-wave-h);fill:var(--f-bg)}
+.f-bg{background:var(--f-bg);margin-top:-1px}
+.f-sub{display:block;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--cherry);margin-top:2px}
+.f-brand .logo{height:var(--f-logo);width:auto;color:var(--ink)}
+.f-bye{font:600 var(--f-bye)/1.1 var(--display);margin-top:12px}
+.f-bye em{font-style:italic;font-weight:500;color:var(--cherry)}
+.f-firma{font:italic 500 18px/1.3 var(--display);color:var(--ink-soft);margin-top:4px}
+.ig{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:99px;box-shadow:inset 0 0 0 1.5px var(--ink);font-weight:600;text-decoration:none;color:var(--ink);transition:background .2s}
+.ig:hover{background:rgba(74,20,36,.06)}
+.ig svg,.pin{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;flex:none}
+.pin{width:24px;height:24px;color:var(--ink);stroke-width:1.6}
+.ig-h{display:block;font-size:14px;color:var(--ink-soft);margin-top:8px}
+.f-loc{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-soft);line-height:1.45}
+/* Mini Miqui */
+.mm-slot{position:relative}
+.mm-slot::after{content:"";position:absolute;left:50%;bottom:-6px;width:70%;height:22px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(74,20,36,.18),transparent);z-index:0}
+.mm{position:relative;height:var(--mm-h);aspect-ratio:314/640;margin:0 auto;z-index:1;pointer-events:none}
+.mm img{position:absolute;inset:0;width:100%;height:100%}
+.mm .mano{transform-origin:19% 34%}
+.foot2.anim .mm{opacity:0;transform:translateY(8px)}
+.foot2.anim .marcas{opacity:0}
+.foot2.anim.on .mm{animation:mm-in .4s var(--ease) forwards}
+.foot2.anim.on .mano{animation:mm-wave .9s .45s ease-in-out}
+.foot2.anim.on .marcas{animation:mm-marks .5s .45s var(--ease) forwards}
+@keyframes mm-in{to{opacity:1;transform:none}}
+@keyframes mm-wave{25%{transform:rotate(10deg)}50%{transform:rotate(-8deg)}75%{transform:rotate(5deg)}100%{transform:rotate(0)}}
+@keyframes mm-marks{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.f-util{display:flex;justify-content:center;align-items:center;gap:10px;font-size:14px;color:var(--ink-soft)}
+.f-util button,.f-util a{min-height:44px;display:inline-flex;align-items:center;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.foot2{--f-top:24px;--f-wave-h:70px;--mm-h:320px;--f-logo:62px;--f-bye:36px}
+.f-bye,.ig{white-space:nowrap}
+.f-main{max-width:var(--max);margin:0 auto;padding:0 48px 28px;display:grid;grid-template-columns:220px 1.4fr 1.2fr .9fr;align-items:center}
+.mm-slot{align-self:end;margin-top:-150px}
+.f-col{padding:0 28px;position:relative}
+.f-col::before{content:"";position:absolute;left:0;top:50%;height:110px;transform:translateY(-50%);border-left:1px solid #E2C4BB}
+.f-ig{text-align:center}
+.f-loc{justify-content:center}
+.f-util{max-width:calc(var(--max) - 96px - 220px);margin:0 auto;margin-left:max(48px + 220px,calc((100% - var(--max))/2 + 48px + 220px));border-top:1px solid #E2C4BB;padding:8px 0 14px}
+@media(max-width:1240px){.foot2{--mm-h:280px}.f-main{grid-template-columns:160px 1.3fr 1.2fr 1.05fr}.f-loc{font-size:14px;gap:8px}.f-col{padding:0 18px}.foot2{--f-bye:30px}.ig{padding:0 18px}.f-util{margin-left:auto;max-width:none;margin-right:32px;margin-left:calc(32px + 170px)}}
+/* ===== Cómo pedir (animado) ===== */
+.como{--ease:cubic-bezier(.22,1,.36,1);background:var(--celeste);border-radius:var(--r-lg);position:relative;overflow:hidden}
+.como::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--rosa);opacity:.55;right:-90px;top:-110px}
+.como-head{position:relative}
+.como-head h2{margin-top:6px}
+.steps{list-style:none;position:relative}
+.step{position:relative}
+.vig{background:var(--white);border-radius:22px;box-shadow:0 10px 30px rgba(74,20,36,.08),inset 0 0 0 1px var(--line);display:grid;place-items:center;overflow:hidden}
+.vig svg{width:100%;height:auto;display:block}
+.vig svg *{transform-box:fill-box}
+.txt .num{font:italic 600 15px/1 var(--display);color:var(--cherry);letter-spacing:.04em}
+.txt h3{font:600 20px/1.2 var(--sans);margin:4px 0 4px}
+.txt p{color:var(--ink-soft);font-size:15px;line-height:1.45}
+.step::after{content:"";position:absolute;transform-origin:0 0;border-color:var(--frambuesa);border-style:dashed;border-width:0;opacity:.8}
+.step:last-child::after{display:none}
+.como-ctas{display:flex;gap:10px;position:relative}
+/* estados iniciales solo si hay animación (sin JS o con reduced-motion se ve el cuadro final) */
+.como.anim .card{opacity:0;transform:translateY(8px)}
+.como.anim .ring,.como.anim .heart{stroke-dashoffset:1}
+.como.anim .chk{opacity:0;transform:scale(.5);transform-origin:center}
+.como.anim .stamp{opacity:0;transform:scale(1.2) rotate(-6deg);transform-origin:center}
+.como.anim .lid{transform:rotate(-24deg) translateY(-6px);transform-origin:0% 100%}
+.como.anim .bubble{opacity:0;transform:translateY(6px)}
+.como.anim .bag{opacity:0;transform:translate(6px,-6px)}
+.como.anim .step::after{scale:0 0}
+.como.anim .step.on .card{animation:c-rise .36s var(--ease) forwards}
+.como.anim .step.on .ring{animation:c-draw .3s .22s var(--ease) forwards}
+.como.anim .step.on .chk{animation:c-pop .22s .48s var(--ease) forwards}
+.como.anim .step.on .stamp{animation:c-stamp .22s .34s var(--ease) forwards}
+.como.anim .step.on .bag{animation:c-rise .3s var(--ease) forwards}
+.como.anim .step.on .heart{animation:c-draw .65s .2s var(--ease) forwards}
+.como.anim .step.on .lid{animation:c-close .3s var(--ease) forwards}
+.como.anim .step.on .bubble{animation:c-rise .3s .34s var(--ease) forwards}
+.como.anim .step.on::after{animation:c-line .3s .7s var(--ease) forwards}
+.como.anim .step.skip *,.como.anim .step.skip::after{animation-duration:1ms!important;animation-delay:0s!important}
+@keyframes c-rise{to{opacity:1;transform:none}}
+@keyframes c-draw{to{stroke-dashoffset:0}}
+@keyframes c-pop{to{opacity:1;transform:scale(1)}}
+@keyframes c-stamp{to{opacity:1;transform:scale(1) rotate(-6deg)}}
+@keyframes c-close{to{transform:none}}
+@keyframes c-line{to{scale:1 1}}
+.stamp{transform:rotate(-6deg);transform-origin:center}
+.como{padding:56px}
+.como-head{margin-bottom:40px}.como-head h2{font-size:52px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.vig{height:170px;margin-bottom:18px;transition:transform .3s var(--ease),box-shadow .3s}
+.step:hover .vig{transform:translateY(-4px);box-shadow:0 16px 36px rgba(74,20,36,.12),inset 0 0 0 1px var(--line)}
+.vig svg{width:84%}
+.step::after{top:85px;left:calc(100% + 4px);width:20px;border-top-width:2px}
+.txt h3{font-size:21px}
+.como-ctas{margin-top:40px;justify-content:center}
+/* Toast */
+.toast{position:fixed;right:28px;bottom:28px;z-index:60;display:flex;align-items:center;gap:14px;min-height:56px;padding:6px 8px 6px 20px;border-radius:16px;background:var(--ink);color:var(--paper);box-shadow:var(--float)}
+.toast button{color:#F8B9C4;font-weight:600;min-height:44px;padding:0 12px}
+
+@media(max-width:1240px){.wrap{padding:0 32px}.hdr .wrap{gap:18px}.nav{gap:2px}.nav button{padding:0 11px}.demo .lg{display:none}.hdr .brand>span:not(.wm){display:none}.pmain{padding:32px}.panel{grid-template-columns:220px 1fr}.ptitle{flex-wrap:wrap}.ptitle h1{font-size:44px}.rowo{grid-template-columns:76px 48px minmax(0,1fr) 250px;gap:6px 14px}.rowo .t,.rowo>img{grid-row:span 2}.rowo .t{font-size:18px;white-space:nowrap}.rowo .badges{grid-column:3;grid-row:2}.rowo .acts{grid-column:4;grid-row:1/span 2}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:no-preference){::view-transition-old(main),::view-transition-new(main){animation-duration:.25s}.vt{view-transition-name:main}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ================= TIENDA ================= -->
+<div id="tienda">
+<header class="hdr" id="hdr"><div class="wrap">
+  <button class="brand" data-tab="inicio" aria-label="Miqui pastelería, inicio"><svg class="logo" viewBox="0 0 2516 1088" role="img" aria-label="Miqui"><g transform="translate(0.000000,1088.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M11115 10710 c-326 -4 -374 -7 -402 -22 -38 -21 -157 -198 -350 -523 -33 -55 -108 -176 -168 -270 -59 -93 -141 -224 -183 -290 -41 -66 -87 -138 -102 -160 -15 -22 -75 -119 -132 -215 -120 -200 -184 -303 -253 -410 -27 -41 -97 -154 -155 -250 -160 -262 -241 -391 -540 -865 -73 -115 -184 -293 -247 -395 -64 -102 -125 -201 -138 -220 -63 -98 -279 -442 -405 -645 -79 -126 -171 -275 -205 -330 -149 -239 -512 -827 -556 -900 -79 -133 -84 -140 -106 -143 -30 -4 -40 19 -48 118 -4 47 -15 139 -25 205 -11 66 -28 197 -40 290 -11 94 -27 206 -35 250 -7 44 -19 116 -25 160 -6 44 -29 197 -50 340 -21 143 -48 328 -59 410 -40 295 -101 711 -116 785 -8 41 -21 129 -30 195 -9 66 -25 172 -35 236 -11 64 -29 178 -39 255 -11 76 -53 375 -95 664 -70 478 -113 797 -151 1095 -7 61 -21 155 -30 210 -9 55 -20 133 -25 173 -19 150 -24 152 -313 152 -122 0 -265 5 -317 11 -121 14 -1129 13 -1263 -1 -55 -5 -133 -19 -176 -30 -42 -11 -122 -26 -176 -34 -55 -9 -148 -31 -207 -51 -59 -19 -113 -35 -122 -35 -8 0 -51 -16 -95 -35 -43 -19 -86 -35 -93 -35 -23 0 -265 -119 -416 -204 -279 -156 -621 -441 -828 -688 -196 -234 -435 -680 -489 -912 -8 -33 -23 -86 -34 -116 -36 -101 -84 -488 -78 -620 8 -150 43 -390 68 -460 11 -30 29 -80 39 -111 90 -270 357 -603 564 -704 53 -26 57 -27 81 -11 48 31 29 89 -55 171 -147 142 -241 325 -335 646 -64 217 -84 584 -45 819 119 723 465 1311 1018 1732 170 130 338 237 412 263 23 8 54 24 70 35 16 12 60 31 97 44 38 13 87 33 110 44 22 12 74 29 114 38 41 9 100 27 131 40 168 70 633 89 765 32 245 -107 365 -341 464 -903 42 -242 44 -260 25 -331 -26 -99 -22 -149 14 -180 37 -34 45 -60 65 -209 9 -66 27 -176 40 -245 13 -69 26 -145 30 -170 3 -25 22 -133 40 -240 19 -107 42 -247 50 -310 9 -63 24 -164 35 -225 11 -60 31 -184 45 -275 48 -319 115 -745 120 -760 6 -19 68 -446 100 -690 14 -102 34 -232 45 -290 11 -58 29 -177 40 -265 11 -88 29 -212 40 -275 11 -63 28 -191 40 -285 11 -93 31 -231 45 -305 13 -74 29 -191 36 -260 6 -69 19 -165 29 -215 10 -49 28 -157 40 -240 12 -82 30 -189 41 -237 10 -48 19 -108 19 -133 0 -65 22 -113 56 -121 34 -9 74 12 91 46 57 118 134 249 373 640 45 74 92 151 103 170 20 35 130 212 217 350 27 41 85 138 130 215 45 77 111 183 145 235 77 115 262 415 370 600 43 74 126 209 183 300 58 91 187 300 287 465 175 289 248 406 535 860 73 116 187 298 253 405 66 107 136 220 157 250 20 30 73 116 119 190 45 74 108 176 140 225 32 50 123 194 201 320 78 127 167 271 198 320 30 50 90 144 132 210 137 212 290 466 382 630 92 163 121 205 145 205 21 0 16 -56 -22 -243 -19 -94 -42 -219 -50 -277 -9 -58 -31 -193 -50 -300 -18 -107 -36 -222 -40 -255 -3 -33 -19 -139 -35 -235 -16 -96 -36 -227 -45 -290 -9 -63 -25 -153 -35 -200 -10 -47 -28 -152 -40 -235 -12 -82 -32 -204 -45 -270 -13 -66 -31 -174 -40 -240 -8 -66 -24 -165 -35 -220 -11 -55 -29 -158 -40 -230 -11 -71 -31 -186 -45 -255 -13 -69 -29 -163 -35 -210 -6 -47 -24 -152 -40 -235 -16 -82 -34 -186 -40 -230 -6 -44 -22 -138 -36 -209 -14 -72 -34 -191 -44 -265 -11 -75 -33 -206 -49 -291 -118 -624 -162 -1176 -117 -1475 36 -245 170 -446 358 -541 122 -61 160 -66 583 -71 429 -5 625 5 655 32 49 44 11 81 -107 107 -140 29 -213 94 -289 253 -70 146 -83 435 -35 755 66 443 90 597 100 640 5 25 22 119 36 210 14 90 30 181 35 201 10 37 75 409 129 739 16 96 38 216 49 265 11 50 25 130 32 179 6 49 22 143 36 210 13 66 34 177 45 246 11 69 31 172 44 230 13 58 31 160 40 228 9 68 25 162 35 210 10 48 28 148 40 222 11 74 31 185 45 245 13 61 31 164 40 230 9 66 25 158 35 205 11 47 28 157 40 245 12 88 30 198 40 246 11 47 26 141 35 209 19 160 109 613 134 682 11 29 25 76 32 103 27 111 144 303 235 386 124 112 371 207 541 209 83 0 123 43 76 81 -18 15 -722 20 -1458 9z"/> <path d="M24312 9649 c-203 -40 -384 -212 -437 -416 -83 -320 162 -653 479 -653 342 1 628 336 567 665 -49 269 -334 459 -609 404z"/> <path d="M13205 9407 c-284 -93 -459 -401 -391 -688 37 -158 209 -324 376 -363 426 -100 817 338 656 733 -58 143 -122 213 -257 282 -84 43 -84 43 -214 46 -87 2 -143 -2 -170 -10z"/> <path d="M5198 8968 c-18 -28 -84 -192 -94 -233 -9 -42 -157 -442 -201 -545 -20 -47 -46 -114 -59 -150 -12 -36 -46 -123 -75 -195 -62 -156 -155 -400 -233 -610 -14 -38 -37 -95 -51 -125 -28 -64 -82 -198 -131 -324 -19 -49 -39 -95 -44 -101 -6 -7 -21 -43 -34 -81 -13 -38 -34 -91 -48 -119 -14 -27 -29 -61 -33 -75 -4 -14 -26 -63 -47 -110 -43 -91 -60 -127 -163 -350 -37 -80 -85 -184 -106 -232 -50 -117 -326 -646 -444 -852 -377 -660 -839 -1212 -1299 -1551 -133 -99 -152 -111 -231 -157 -214 -124 -455 -196 -691 -205 -318 -13 -555 78 -792 304 -69 65 -89 68 -169 26 -97 -50 -112 -78 -78 -142 28 -54 200 -172 360 -245 364 -167 653 -185 1120 -71 464 114 914 442 1342 977 185 232 526 793 733 1208 197 394 430 905 569 1245 11 28 59 145 106 260 86 210 213 539 266 690 15 44 49 134 74 200 86 220 175 469 322 900 58 171 114 333 125 360 23 58 58 232 58 287 0 45 -28 53 -52 16z"/> <path d="M24375 7808 c-143 -4 -364 -17 -492 -28 -127 -12 -285 -20 -351 -18 -137 3 -172 -9 -172 -61 0 -37 21 -54 100 -80 227 -74 274 -245 187 -681 -21 -102 -55 -279 -78 -395 -22 -115 -60 -309 -84 -430 -24 -121 -80 -407 -125 -635 -44 -228 -96 -491 -115 -585 -19 -93 -45 -242 -59 -330 -14 -88 -36 -212 -48 -275 -32 -166 -32 -376 1 -480 128 -412 497 -583 941 -435 293 98 661 437 847 780 83 155 79 143 62 173 -37 68 -90 27 -204 -157 -279 -451 -586 -584 -711 -308 -39 85 -39 228 -1 397 15 63 34 158 42 210 9 52 25 129 35 170 11 41 26 118 35 170 8 52 31 169 49 260 19 91 43 212 54 270 12 58 30 152 41 210 12 58 39 200 62 315 22 116 51 266 65 335 14 69 38 195 54 280 112 609 150 806 206 1062 62 285 72 277 -341 266z"/> <path d="M22115 7740 c-88 -4 -279 -8 -425 -9 -287 -1 -310 -5 -310 -55 0 -29 23 -48 85 -71 111 -41 170 -101 201 -209 24 -86 15 -290 -21 -451 -14 -66 -35 -167 -45 -225 -11 -58 -42 -226 -70 -375 -28 -148 -66 -360 -86 -470 -151 -859 -246 -1192 -391 -1372 -19 -23 -44 -59 -56 -80 -136 -235 -432 -568 -612 -688 -254 -169 -537 -173 -701 -9 -125 123 -176 350 -141 614 34 247 59 399 83 500 14 58 36 161 49 230 13 69 35 179 49 245 13 66 43 217 66 335 22 118 50 260 61 315 11 55 32 161 45 235 14 74 36 187 49 250 13 63 29 153 35 200 6 47 24 153 40 235 17 83 39 202 50 265 10 63 35 192 55 285 41 195 39 232 -16 261 -32 16 -402 8 -764 -16 -77 -6 -223 -13 -325 -16 -200 -6 -246 -14 -255 -45 -9 -28 10 -47 58 -60 112 -30 190 -89 229 -174 35 -76 33 -295 -4 -450 -15 -60 -34 -160 -42 -222 -9 -62 -25 -153 -36 -203 -11 -50 -29 -148 -41 -218 -11 -70 -31 -176 -44 -237 -14 -60 -31 -155 -40 -210 -8 -55 -28 -165 -45 -245 -49 -235 -98 -488 -115 -590 -9 -52 -29 -162 -45 -245 -98 -514 -64 -902 100 -1146 217 -321 531 -447 957 -385 451 66 958 440 1313 968 93 138 121 170 137 155 11 -12 6 -86 -12 -153 -26 -102 -21 -351 11 -460 106 -368 405 -536 795 -448 131 29 281 93 379 162 253 178 524 476 616 677 27 58 23 85 -11 85 -34 0 -69 -33 -152 -144 -225 -299 -453 -450 -579 -384 -143 76 -175 223 -113 518 44 211 159 787 213 1070 26 135 60 310 76 390 16 80 52 264 80 410 27 146 61 321 75 390 13 69 34 181 45 250 20 122 54 301 107 565 14 72 32 164 40 205 29 146 29 205 0 234 -26 26 -26 26 -234 24 -114 -1 -280 -5 -368 -8z"/> <path d="M16310 7693 c-663 -69 -1132 -297 -1596 -775 -309 -319 -500 -645 -662 -1133 -141 -425 -194 -814 -162 -1185 16 -180 73 -483 109 -575 193 -500 564 -820 1004 -866 117 -12 313 -4 384 16 305 87 521 213 779 456 158 148 210 209 275 324 53 95 102 155 116 142 4 -4 -7 -81 -25 -170 -59 -304 -81 -422 -97 -542 -9 -66 -27 -167 -40 -225 -14 -58 -32 -152 -40 -209 -9 -58 -26 -152 -39 -210 -14 -58 -32 -160 -41 -226 -9 -66 -25 -155 -36 -198 -11 -42 -28 -137 -40 -210 -11 -72 -28 -173 -39 -224 -11 -50 -29 -172 -40 -270 -12 -98 -28 -236 -36 -308 -11 -89 -14 -171 -10 -257 6 -124 6 -128 -16 -142 -42 -27 -438 -165 -518 -181 -19 -3 -71 -17 -115 -30 -136 -40 -461 -109 -662 -139 -57 -9 -147 -23 -200 -31 -184 -29 -298 -36 -673 -42 -438 -7 -647 4 -895 47 -93 16 -206 34 -250 40 -283 40 -960 229 -1325 370 -544 210 -839 372 -1570 860 -129 87 -280 183 -335 215 -332 194 -503 308 -618 414 -98 91 -132 103 -163 56 -23 -36 -12 -69 83 -250 332 -625 850 -1087 1693 -1510 492 -247 1186 -454 1700 -506 107 -11 238 -27 290 -35 119 -19 858 -31 995 -16 50 6 164 18 255 27 249 24 563 64 675 85 55 11 154 29 220 40 318 55 730 162 1182 306 127 41 245 74 262 74 38 0 66 -26 91 -85 39 -91 161 -197 304 -263 172 -81 444 -110 731 -78 83 9 199 20 258 26 304 27 848 164 1232 310 518 197 809 371 1066 637 220 228 309 409 309 628 0 191 -95 310 -300 373 -248 76 -587 13 -1060 -198 -63 -29 -153 -68 -200 -88 -47 -20 -206 -97 -355 -172 -148 -75 -416 -211 -595 -301 -448 -227 -505 -253 -530 -239 -32 17 -32 47 0 225 17 94 44 247 60 340 16 94 38 208 48 255 11 47 23 110 27 140 4 30 20 123 35 205 16 83 34 186 40 230 12 88 60 358 120 675 22 113 46 257 55 320 9 63 25 154 36 202 10 48 26 133 34 190 9 57 29 159 45 228 16 69 36 170 45 225 8 55 27 147 40 205 13 58 29 141 35 185 6 44 24 136 40 205 16 69 31 145 35 170 3 25 21 128 40 230 19 102 44 237 54 300 25 143 65 349 97 500 14 63 38 187 54 276 16 88 36 190 45 227 8 37 24 124 35 194 11 71 31 189 44 263 57 307 59 326 44 357 -24 50 -41 52 -298 43 -129 -5 -314 -12 -410 -15 -277 -10 -280 -11 -280 -162 0 -131 -28 -142 -101 -41 -135 186 -455 302 -749 271z m286 -184 c88 -16 192 -70 256 -132 150 -148 241 -517 193 -782 -9 -44 -26 -152 -39 -240 -14 -88 -34 -198 -45 -245 -10 -47 -27 -134 -36 -195 -9 -60 -27 -162 -40 -225 -13 -63 -33 -170 -45 -238 -11 -68 -31 -167 -44 -220 -14 -53 -32 -144 -41 -202 -10 -57 -30 -145 -45 -195 -15 -49 -31 -106 -35 -125 -4 -19 -19 -60 -35 -90 -15 -30 -33 -73 -40 -95 -16 -52 -95 -200 -131 -246 -15 -19 -34 -48 -41 -65 -42 -94 -216 -334 -307 -424 -171 -168 -295 -220 -521 -220 -220 1 -395 120 -516 350 -58 111 -139 361 -153 470 -27 220 -34 466 -17 634 8 88 20 214 26 278 6 64 21 159 34 210 13 51 29 127 35 168 20 126 156 564 219 700 11 25 44 97 72 160 136 307 241 462 442 656 123 118 160 147 258 204 168 98 412 143 596 109z m2957 -5983 c110 -53 124 -115 45 -189 -368 -346 -1093 -663 -1893 -828 -160 -33 -363 -32 -435 2 -157 74 -260 252 -260 447 0 64 81 104 390 191 80 23 208 59 285 81 474 134 1022 264 1260 299 192 28 199 29 385 27 160 -1 167 -2 223 -30z"/> <path d="M13070 7589 c-195 -10 -450 -20 -566 -23 -236 -4 -267 -11 -272 -59 -5 -44 21 -64 98 -77 103 -17 151 -52 196 -142 46 -90 53 -164 30 -293 -9 -49 -27 -151 -40 -225 -14 -75 -36 -183 -49 -240 -14 -58 -33 -154 -41 -214 -9 -60 -27 -157 -41 -215 -13 -58 -33 -162 -45 -231 -12 -69 -27 -150 -35 -180 -8 -30 -25 -118 -39 -195 -13 -77 -34 -183 -46 -235 -12 -52 -30 -140 -39 -195 -10 -55 -30 -154 -44 -220 -14 -66 -37 -183 -51 -260 -14 -77 -34 -183 -45 -235 -21 -104 -57 -312 -73 -430 -32 -239 48 -490 201 -633 200 -184 549 -210 853 -62 244 118 428 287 633 580 125 179 136 197 133 229 -6 63 -85 28 -139 -62 -94 -155 -285 -348 -397 -400 -148 -68 -302 -15 -332 114 -24 103 -4 350 46 554 14 58 34 150 44 206 10 55 28 136 39 180 11 43 29 133 41 199 12 66 30 154 40 195 10 41 26 121 34 177 8 56 27 146 40 200 14 54 33 143 41 198 9 55 25 133 36 174 11 40 31 139 45 220 14 80 36 193 49 251 13 58 36 164 50 235 66 329 87 427 109 515 14 52 34 156 46 230 12 74 30 164 41 199 25 82 24 131 -2 165 -25 32 -28 32 -549 5z"/></g></svg><span>pastelería</span></button>
+  <nav class="nav" aria-label="Secciones">
+    <button data-tab="tortas">Tortas</button>
+    <button data-tab="finde">Menú del finde</button>
+    <button data-tab="mesa">Mesa dulce</button>
+    <button data-tab="inicio" data-go="como">Cómo pedir</button>
+  </nav>
+  <span class="demo" title="Precios, fechas, stock y fotos son de ejemplo">Boceto<span class="lg"> · datos de ejemplo</span></span>
+  <button class="cartbtn" id="cartbtn" data-tab="finde" aria-live="polite">Tu pedido <span class="n" id="cartN">0</span></button>
+</div></header>
+
+<main class="vt" id="main">
+<!-- INICIO -->
+<section class="view on" id="v-inicio" aria-labelledby="h-inicio">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Pastelería casera · Lomas de Zamora</p>
+      <h1 class="display" id="h-inicio" style="margin-top:16px">Algo <em>lindo</em> para celebrar</h1>
+      <p class="sub" data-txt="sub">Tortas a tu medida y porciones para el finde. Hechas en Lomas, para retirar por casa.</p>
+      <div class="ctas"><button class="btn" data-tab="tortas">Elegí tu torta</button><button class="btn ghost" data-tab="finde">Ver el menú del finde</button></div>
+      <div class="facts"><span>Retiro en Lomas de Zamora</span><span>Mercado Pago o efectivo</span></div>
+    </div>
+    <div class="collage" aria-hidden="false">
+      <div class="c c1"><img id="heroImg" alt="Torta de capas con crema y frambuesas" fetchpriority="high"><span class="tag">Foto ilustrativa</span></div>
+      <button class="c c2" data-tab="finde" aria-label="Ver el menú del finde"><img alt="" loading="lazy"><span class="tag">Foto ilustrativa</span></button>
+      <div class="seal" id="seal" aria-hidden="true">
+        <svg viewBox="0 0 148 148"><defs><path id="circ" d="M74 74m-56 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0"/></defs><text><textPath href="#circ">hecho a mano · Lomas de Zamora · </textPath></text></svg>
+        <svg class="mono" viewBox="0 0 1114 725" aria-hidden="true" focusable="false"><g transform="translate(0.000000,725.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M10529 7046 c-2 -2 -256 -6 -564 -8 -560 -4 -560 -4 -605 -28 -48 -27 -61 -44 -299 -410 -63 -96 -135 -202 -160 -235 -81 -105 -412 -592 -591 -870 -126 -195 -409 -632 -490 -755 -25 -37 -243 -365 -484 -727 -242 -362 -453 -680 -471 -708 -35 -56 -101 -157 -227 -350 -47 -71 -97 -151 -112 -178 -60 -106 -125 -92 -127 26 0 46 -1 49 -52 322 -48 250 -100 549 -142 815 -18 118 -45 271 -60 340 -14 69 -37 186 -50 260 -45 253 -134 664 -196 910 -151 604 -312 930 -584 1188 -257 243 -522 347 -999 393 -265 25 -813 -24 -959 -87 -34 -15 -105 -41 -157 -59 -91 -32 -256 -112 -292 -143 -28 -24 -23 -70 8 -78 41 -10 109 3 172 35 33 17 97 39 142 51 46 12 116 32 156 46 103 34 284 51 401 36 355 -43 585 -249 787 -704 35 -80 69 -163 75 -184 25 -91 5 -251 -48 -372 -31 -70 -40 -100 -67 -222 -9 -41 -30 -110 -45 -152 -15 -42 -37 -126 -49 -187 -11 -61 -31 -143 -44 -183 -34 -103 -44 -143 -61 -241 -8 -48 -29 -130 -46 -182 -16 -52 -39 -141 -49 -196 -11 -56 -33 -138 -50 -182 -17 -43 -42 -135 -56 -204 -14 -68 -34 -147 -46 -176 -11 -29 -37 -117 -58 -197 -20 -80 -46 -170 -58 -201 -12 -31 -30 -98 -41 -148 -11 -51 -36 -127 -55 -169 -19 -42 -42 -106 -51 -142 -9 -36 -32 -96 -50 -135 -18 -38 -40 -97 -49 -129 -10 -33 -31 -86 -47 -118 -16 -32 -38 -82 -49 -111 -40 -104 -209 -445 -269 -542 -21 -33 -59 -95 -85 -137 -173 -283 -548 -664 -839 -852 -121 -78 -287 -159 -377 -186 -41 -12 -115 -34 -165 -50 -163 -51 -454 -64 -645 -29 -113 21 -311 102 -400 164 -182 128 -332 336 -377 524 -18 77 -23 297 -9 438 9 90 9 91 -17 117 -50 50 -91 20 -160 -115 -79 -155 -104 -423 -59 -626 106 -468 615 -793 1246 -794 169 -1 165 -1 400 48 526 109 1029 469 1421 1019 445 623 703 1268 1026 2569 71 286 104 413 170 660 20 77 65 245 98 373 34 129 63 237 65 241 3 4 14 72 26 151 21 147 33 185 62 204 42 26 77 -51 104 -224 9 -58 31 -163 50 -235 18 -71 45 -194 59 -273 14 -79 32 -172 40 -206 8 -35 28 -148 44 -252 17 -104 37 -221 45 -261 9 -39 29 -152 46 -250 16 -98 47 -266 69 -373 21 -107 47 -244 56 -305 21 -140 95 -566 140 -800 45 -236 51 -274 70 -440 9 -77 29 -219 46 -317 20 -123 29 -210 29 -291 0 -128 16 -167 66 -167 51 0 79 26 134 127 30 54 109 182 176 284 67 102 181 282 252 400 177 293 319 518 391 619 127 178 370 547 803 1220 69 107 157 240 194 295 38 55 83 121 99 147 17 26 64 98 106 160 42 62 125 190 184 283 59 94 166 258 238 365 166 249 185 276 335 505 68 105 143 217 165 250 96 143 135 203 164 256 63 112 141 209 168 209 26 0 15 -88 -34 -280 -39 -153 -88 -370 -196 -875 -136 -636 -151 -704 -316 -1430 -27 -121 -72 -319 -99 -440 -27 -121 -72 -319 -100 -440 -28 -121 -71 -308 -96 -415 -24 -107 -66 -276 -94 -375 -27 -99 -63 -238 -80 -310 -90 -380 -195 -527 -405 -565 -97 -18 -127 -34 -123 -68 6 -55 -17 -54 943 -53 485 1 896 6 911 10 56 17 64 23 64 48 0 27 -28 42 -120 63 -74 17 -97 30 -152 86 -117 119 -125 274 -34 664 105 446 136 579 146 640 6 36 29 135 50 220 62 244 148 602 155 640 4 19 26 121 51 225 55 237 108 474 140 630 14 66 38 174 54 240 15 66 38 170 50 230 11 61 34 160 50 220 16 61 36 153 45 205 9 52 31 154 50 225 18 72 43 180 55 240 12 61 35 160 51 221 16 61 42 178 59 260 71 360 149 544 290 684 122 121 233 170 504 219 97 17 141 86 76 118 -23 12 -370 20 -381 9z"/></g></svg>
+      </div>
+    </div>
+  </div>
+
+  <svg class="scallop" viewBox="0 0 1200 18" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" id="scallopPath"/></svg>
+  <div class="band"><div class="wrap">
+    <div>
+      <p class="eyebrow">Este finde · sáb 7 y dom 8 de noviembre</p>
+      <h2 class="display h2" style="margin-top:10px">Porciones del <em>finde</em></h2>
+      <p class="cierre">Un menú distinto cada fin de semana, con cantidades limitadas.<br><b><span data-txt="cierre">Reservás hasta el jueves 5, 20 h</span></b> (hora de Buenos Aires).</p>
+      <div class="ctas"><button class="btn" data-tab="finde">Reservar mis porciones</button><button class="btn ghost" data-story="0">Verlo en historias</button></div>
+    </div>
+    <div class="preview-menu">
+      <ol class="pm-list" id="pmList" aria-label="Menú de este finde"></ol>
+      <div class="pm-photo"><img id="pmImg" alt=""><span class="tag">Foto ilustrativa</span></div>
+    </div>
+  </div></div>
+  <svg class="scallop inv" viewBox="0 0 1200 18" preserveAspectRatio="none" aria-hidden="true"><use href="#scallopPath"/></svg>
+
+  <div class="wrap sec">
+    <div class="sec-head"><h2 class="display h2">Tortas por <em>encargo</em></h2><div class="chips" id="chipsHome"></div></div>
+    <div class="grid" id="gridHome"></div>
+    <div style="text-align:center;margin-top:36px"><button class="btn ghost" data-tab="tortas">Ver todas las tortas</button></div>
+  </div>
+
+  <section class="mesa2" id="mesa2" aria-labelledby="h-mesa2">
+    <svg class="m-bg" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64C170 18 380 0 600 30s430 48 600 4V472c-190 48-400 52-610 22S170 452 0 494Z"/></svg>
+    <svg class="m-line m-line-d" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M-10 300C120 380 260 470 470 450S860 400 1060 410C1100 412 1128 396 1126 380 1124 366 1112 364 1108 376 1104 364 1092 366 1090 380 1088 396 1110 410 1140 414 1170 418 1192 412 1210 404"/></svg>
+    <svg class="m-line m-line-m" viewBox="0 0 400 900" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M-10 380C70 440 150 450 230 420S370 380 384 470C396 560 330 650 316 720 308 760 320 792 344 796 362 798 372 780 364 766 376 778 396 772 394 754 392 734 366 728 350 744"/></svg>
+    <div class="m-in">
+      <div class="m-photo">
+        <svg class="m-spark" viewBox="0 0 44 44" aria-hidden="true"><path d="M10 26l-8-3M16 14l-5-7M28 9l1-8"/></svg>
+        <svg class="blob" viewBox="0 0 400 400" role="img" aria-label="Torre de dos pisos con postres variados">
+          <defs><clipPath id="blobClip"><path d="M200 22C237 29 291 80 320 110C348 139 378 167 372 200C366 233 312 284 283 310C254 337 238 360 200 360C162 360 79 336 55 310C30 283 47 241 54 200C61 159 75 95 99 66C123 36 163 15 200 22Z"/></clipPath></defs>
+          <image href="https://images.unsplash.com/photo-1769812343484-df7391e843d6?w=800&amp;q=70&amp;auto=format&amp;fit=crop" width="400" height="400" preserveAspectRatio="xMidYMid slice" clip-path="url(#blobClip)"/>
+          <path d="M200 22C237 29 291 80 320 110C348 139 378 167 372 200C366 233 312 284 283 310C254 337 238 360 200 360C162 360 79 336 55 310C30 283 47 241 54 200C61 159 75 95 99 66C123 36 163 15 200 22Z" fill="none" stroke="#FFF9F2" stroke-width="14"/>
+        </svg>
+        <span class="tag">Foto ilustrativa</span>
+      </div>
+      <div class="m-txt">
+        <p class="eyebrow">Mesa dulce</p>
+        <h2 class="display" id="h-mesa2">Petits, cupcakes y mesas <em>armadas</em></h2>
+        <p>Para eventos y reuniones especiales. Combiná tus favoritos y armá una mesa dulce a tu medida.</p>
+        <button class="btn" data-tab="mesa">Ver opciones <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap sec">
+  <section class="como" id="como" aria-labelledby="h-como">
+    <div class="como-head">
+      <p class="eyebrow">Así de simple</p>
+      <h2 class="display" id="h-como">Cómo <em>pedir</em></h2>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step">
+        <div class="vig" aria-hidden="true"><svg viewBox="0 0 160 120">
+          <g class="card"><rect x="40" y="14" width="80" height="92" rx="12" fill="#fff" stroke="var(--line)" stroke-width="1.5"/>
+            <line x1="52" y1="76" x2="108" y2="76" stroke="var(--line)" stroke-width="2" stroke-linecap="round"/>
+            <rect x="58" y="46" width="44" height="29" rx="5" fill="var(--manteca)"/>
+            <line x1="60" y1="60" x2="100" y2="60" stroke="var(--frambuesa)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="67" cy="43" r="4.5" fill="var(--frambuesa)"/><circle cx="80" cy="41" r="4.5" fill="var(--cherry)"/><circle cx="93" cy="43" r="4.5" fill="var(--frambuesa)"/>
+            <rect x="54" y="84" width="52" height="5" rx="2.5" fill="var(--line)"/><rect x="62" y="94" width="36" height="5" rx="2.5" fill="var(--line)"/></g>
+          <rect class="ring" x="35" y="9" width="90" height="102" rx="16" fill="none" stroke="var(--cherry)" stroke-width="2.5" pathLength="1" stroke-dasharray="1"/>
+          <g class="chk"><circle cx="123" cy="13" r="10" fill="var(--cherry)"/><path d="M118 13l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </svg></div>
+        <div class="txt"><span class="num">01</span><h3>Elegís</h3><p>Elegí tu torta o las porciones del finde, con el precio a la vista.</p></div>
+      </li>
+      <li class="step">
+        <div class="vig" aria-hidden="true"><svg viewBox="0 0 160 120">
+          <rect x="22" y="12" width="116" height="94" rx="12" fill="#fff" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M22 24a12 12 0 0 1 12-12h92a12 12 0 0 1 12 12v8H22z" fill="var(--cherry)"/>
+          <g fill="var(--line)">
+            <rect x="31" y="42" width="10" height="10" rx="3"/><rect x="46" y="42" width="10" height="10" rx="3"/><rect x="61" y="42" width="10" height="10" rx="3"/><rect x="76" y="42" width="10" height="10" rx="3"/><rect x="91" y="42" width="10" height="10" rx="3"/><rect x="106" y="42" width="10" height="10" rx="3"/><rect x="121" y="42" width="10" height="10" rx="3"/>
+            <rect x="31" y="58" width="10" height="10" rx="3"/><rect x="46" y="58" width="10" height="10" rx="3"/><rect x="61" y="58" width="10" height="10" rx="3"/><rect x="76" y="58" width="10" height="10" rx="3"/><rect x="106" y="58" width="10" height="10" rx="3"/><rect x="121" y="58" width="10" height="10" rx="3"/>
+            <rect x="31" y="74" width="10" height="10" rx="3"/><rect x="46" y="74" width="10" height="10" rx="3"/><rect x="61" y="74" width="10" height="10" rx="3"/></g>
+          <rect x="91" y="58" width="10" height="10" rx="3" fill="var(--frambuesa)"/>
+          <circle class="ring" cx="96" cy="63" r="10" fill="none" stroke="var(--cherry)" stroke-width="2.2" pathLength="1" stroke-dasharray="1" transform="rotate(-90 96 63)"/>
+          <g class="stamp"><rect x="80" y="84" width="72" height="22" rx="11" fill="#E3F0E7" stroke="#286348" stroke-width="1.2"/><text x="116" y="99" text-anchor="middle" font-family="Instrument Sans,system-ui,sans-serif" font-size="10" font-weight="600" fill="#286348">Seña recibida ✓</text></g>
+        </svg></div>
+        <div class="txt"><span class="num">02</span><h3>Reservás tu fecha</h3><p>Elegí una fecha disponible. Seña por Mercado Pago o efectivo: reserva confirmada al recibirla.</p></div>
+      </li>
+      <li class="step">
+        <div class="vig" aria-hidden="true"><svg viewBox="0 0 160 120">
+          <path d="M28 80v18c0 9 23 16 52 16s52-7 52-16V80" fill="#EBCDB6"/>
+          <path d="M28 89c0 9 23 16 52 16s52-7 52-16" fill="none" stroke="var(--frambuesa)" stroke-width="3" opacity=".7"/>
+          <ellipse cx="80" cy="80" rx="52" ry="17" fill="var(--manteca)"/>
+          <path class="heart" d="M80 90c-15-8-17-17-11-20 4-2 9 0 11 4 2-4 7-6 11-4 6 3 4 12-11 20z" fill="none" stroke="var(--cherry)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1"/>
+          <g class="bag"><path d="M104 12c11-4 28 5 30 17L96 62l-6-6z" fill="var(--rosa)" stroke="var(--cherry)" stroke-width="1.5" stroke-linejoin="round"/><path d="M108 14c6 1 14 6 17 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/><path d="M104 12c-5-5-2-10 4-9 6 1 9 7 7 10" fill="none" stroke="var(--cherry)" stroke-width="1.5" stroke-linecap="round"/><path d="M96 62l-6-6-5 11z" fill="var(--ink)"/></g>
+        </svg></div>
+        <div class="txt"><span class="num">03</span><h3>Miqui la prepara</h3><p>Miqui prepara tu pedido para la fecha que elegiste.</p></div>
+      </li>
+      <li class="step">
+        <div class="vig" aria-hidden="true"><svg viewBox="0 0 160 120">
+          <rect x="40" y="58" width="80" height="48" rx="5" fill="#fff" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="74" y="58" width="12" height="24" fill="var(--cherry)"/>
+          <text x="80" y="76" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-style="italic" font-weight="600" font-size="11" fill="#fff">M</text>
+          <g class="lid"><rect x="36" y="46" width="88" height="14" rx="4" fill="#fff" stroke="var(--line)" stroke-width="1.5"/><path d="M68 46v-6a12 8 0 0 1 24 0v6" fill="none" stroke="var(--line)" stroke-width="3"/></g>
+          <g class="bubble"><rect x="30" y="6" width="112" height="24" rx="12" fill="#E3F3E3"/><path d="M44 28l-4 8 10-6z" fill="#E3F3E3"/><text x="86" y="22" text-anchor="middle" font-family="Instrument Sans,system-ui,sans-serif" font-size="10" font-weight="600" fill="#1f4d2c">¡Tu pedido está listo! 💗</text></g>
+        </svg></div>
+        <div class="txt"><span class="num">04</span><h3>Retirás por casa</h3><p>Te avisa por WhatsApp cuando está listo. Retirás por su casa en Lomas de Zamora.</p></div>
+      </li>
+    </ol>
+    <div class="como-ctas"><button class="btn" data-tab="tortas">Elegí tu torta</button><button class="btn ghost" data-tab="finde">Ver el menú del finde</button></div>
+  </section>
+  
+  </div>
+</section>
+
+<!-- TORTAS -->
+<section class="view" id="v-tortas" aria-labelledby="h-tortas">
+  <div class="wrap">
+    <div class="phead"><div><p class="eyebrow">Por encargo</p><h1 class="display" id="h-tortas" style="margin-top:8px">Tortas a tu <em>medida</em></h1></div><div class="chips" id="chipsTortas" role="group" aria-label="Filtrar por ocasión" style="display:flex;gap:8px"></div></div>
+    <div class="grid" id="gridTortas"></div>
+    <div class="split rosa" style="margin-top:80px">
+      <div class="ph"><img data-img="1778447849704-913b5e8a5695" data-w="800" alt="Torta decorada con perlas"><span class="tag">Foto ilustrativa</span></div>
+      <div class="txt"><p class="eyebrow">Casamientos</p><h2 class="display h2">¿Es para tu <em>boda</em>?</h2><p class="muted">Las tortas de casamiento se charlan en persona: pisos, sabores y prueba.</p><button class="btn ghost" data-consulta="boda">Consultar por WhatsApp</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDE -->
+<section class="view" id="v-finde" aria-labelledby="h-finde">
+  <div class="wrap finde">
+    <div>
+      <div class="fhead">
+        <div><p class="eyebrow"><span data-txt="fecha">Sáb 7 y Dom 8 de noviembre</span></p><h1 class="display" id="h-finde">Menú del <em>finde</em></h1><p><b><span data-txt="cierre">Reservás hasta el jueves 5, 20 h</span></b> (hora de Buenos Aires). Retiro por casa.</p></div>
+        <button class="btn ghost" data-story="0">Ver en historias</button>
+      </div>
+      <ol class="menu" id="menu" aria-label="Porciones disponibles"></ol>
+      <p class="small muted" style="margin-top:16px">Precios y cantidades de ejemplo.</p>
+    </div>
+    <aside class="side" id="side" aria-labelledby="sideTitle" tabindex="-1">
+      <h2 id="sideTitle">Tu pedido</h2>
+      <div id="sideBody"></div>
+    </aside>
+  </div>
+</section>
+
+<!-- MESA -->
+<section class="view" id="v-mesa" aria-labelledby="h-mesa">
+  <div class="wrap">
+    <div class="phead"><div><p class="eyebrow">Para eventos</p><h1 class="display" id="h-mesa" style="margin-top:8px">Mesa <em>dulce</em></h1></div><p class="muted" style="max-width:40ch">Elegí una base y contale tu idea. Miqui te responde con la propuesta y el precio final.</p></div>
+    <div class="grid" id="mesas" style="grid-template-columns:repeat(3,1fr)"></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot2" id="foot2">
+  <svg class="f-wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 52C220 18 470 4 730 22s520 40 710 6V70H0z"/></svg>
+  <div class="f-bg">
+  <div class="f-main">
+    <div class="mm-slot" aria-hidden="true"><div class="mm">
+      <img src="img/mini-miqui-full-base.webp" alt="" width="314" height="640" decoding="async" loading="lazy">
+      <img class="mano" src="img/mini-miqui-full-mano.webp" alt="" width="314" height="640" decoding="async" loading="lazy">
+      <img class="marcas" src="img/mini-miqui-full-marcas.webp" alt="" width="314" height="640" decoding="async" loading="lazy">
+    </div></div>
+    <div class="f-col f-brand"><svg class="logo" viewBox="0 0 2516 1088" role="img" aria-label="Miqui"><g transform="translate(0.000000,1088.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M11115 10710 c-326 -4 -374 -7 -402 -22 -38 -21 -157 -198 -350 -523 -33 -55 -108 -176 -168 -270 -59 -93 -141 -224 -183 -290 -41 -66 -87 -138 -102 -160 -15 -22 -75 -119 -132 -215 -120 -200 -184 -303 -253 -410 -27 -41 -97 -154 -155 -250 -160 -262 -241 -391 -540 -865 -73 -115 -184 -293 -247 -395 -64 -102 -125 -201 -138 -220 -63 -98 -279 -442 -405 -645 -79 -126 -171 -275 -205 -330 -149 -239 -512 -827 -556 -900 -79 -133 -84 -140 -106 -143 -30 -4 -40 19 -48 118 -4 47 -15 139 -25 205 -11 66 -28 197 -40 290 -11 94 -27 206 -35 250 -7 44 -19 116 -25 160 -6 44 -29 197 -50 340 -21 143 -48 328 -59 410 -40 295 -101 711 -116 785 -8 41 -21 129 -30 195 -9 66 -25 172 -35 236 -11 64 -29 178 -39 255 -11 76 -53 375 -95 664 -70 478 -113 797 -151 1095 -7 61 -21 155 -30 210 -9 55 -20 133 -25 173 -19 150 -24 152 -313 152 -122 0 -265 5 -317 11 -121 14 -1129 13 -1263 -1 -55 -5 -133 -19 -176 -30 -42 -11 -122 -26 -176 -34 -55 -9 -148 -31 -207 -51 -59 -19 -113 -35 -122 -35 -8 0 -51 -16 -95 -35 -43 -19 -86 -35 -93 -35 -23 0 -265 -119 -416 -204 -279 -156 -621 -441 -828 -688 -196 -234 -435 -680 -489 -912 -8 -33 -23 -86 -34 -116 -36 -101 -84 -488 -78 -620 8 -150 43 -390 68 -460 11 -30 29 -80 39 -111 90 -270 357 -603 564 -704 53 -26 57 -27 81 -11 48 31 29 89 -55 171 -147 142 -241 325 -335 646 -64 217 -84 584 -45 819 119 723 465 1311 1018 1732 170 130 338 237 412 263 23 8 54 24 70 35 16 12 60 31 97 44 38 13 87 33 110 44 22 12 74 29 114 38 41 9 100 27 131 40 168 70 633 89 765 32 245 -107 365 -341 464 -903 42 -242 44 -260 25 -331 -26 -99 -22 -149 14 -180 37 -34 45 -60 65 -209 9 -66 27 -176 40 -245 13 -69 26 -145 30 -170 3 -25 22 -133 40 -240 19 -107 42 -247 50 -310 9 -63 24 -164 35 -225 11 -60 31 -184 45 -275 48 -319 115 -745 120 -760 6 -19 68 -446 100 -690 14 -102 34 -232 45 -290 11 -58 29 -177 40 -265 11 -88 29 -212 40 -275 11 -63 28 -191 40 -285 11 -93 31 -231 45 -305 13 -74 29 -191 36 -260 6 -69 19 -165 29 -215 10 -49 28 -157 40 -240 12 -82 30 -189 41 -237 10 -48 19 -108 19 -133 0 -65 22 -113 56 -121 34 -9 74 12 91 46 57 118 134 249 373 640 45 74 92 151 103 170 20 35 130 212 217 350 27 41 85 138 130 215 45 77 111 183 145 235 77 115 262 415 370 600 43 74 126 209 183 300 58 91 187 300 287 465 175 289 248 406 535 860 73 116 187 298 253 405 66 107 136 220 157 250 20 30 73 116 119 190 45 74 108 176 140 225 32 50 123 194 201 320 78 127 167 271 198 320 30 50 90 144 132 210 137 212 290 466 382 630 92 163 121 205 145 205 21 0 16 -56 -22 -243 -19 -94 -42 -219 -50 -277 -9 -58 -31 -193 -50 -300 -18 -107 -36 -222 -40 -255 -3 -33 -19 -139 -35 -235 -16 -96 -36 -227 -45 -290 -9 -63 -25 -153 -35 -200 -10 -47 -28 -152 -40 -235 -12 -82 -32 -204 -45 -270 -13 -66 -31 -174 -40 -240 -8 -66 -24 -165 -35 -220 -11 -55 -29 -158 -40 -230 -11 -71 -31 -186 -45 -255 -13 -69 -29 -163 -35 -210 -6 -47 -24 -152 -40 -235 -16 -82 -34 -186 -40 -230 -6 -44 -22 -138 -36 -209 -14 -72 -34 -191 -44 -265 -11 -75 -33 -206 -49 -291 -118 -624 -162 -1176 -117 -1475 36 -245 170 -446 358 -541 122 -61 160 -66 583 -71 429 -5 625 5 655 32 49 44 11 81 -107 107 -140 29 -213 94 -289 253 -70 146 -83 435 -35 755 66 443 90 597 100 640 5 25 22 119 36 210 14 90 30 181 35 201 10 37 75 409 129 739 16 96 38 216 49 265 11 50 25 130 32 179 6 49 22 143 36 210 13 66 34 177 45 246 11 69 31 172 44 230 13 58 31 160 40 228 9 68 25 162 35 210 10 48 28 148 40 222 11 74 31 185 45 245 13 61 31 164 40 230 9 66 25 158 35 205 11 47 28 157 40 245 12 88 30 198 40 246 11 47 26 141 35 209 19 160 109 613 134 682 11 29 25 76 32 103 27 111 144 303 235 386 124 112 371 207 541 209 83 0 123 43 76 81 -18 15 -722 20 -1458 9z"/> <path d="M24312 9649 c-203 -40 -384 -212 -437 -416 -83 -320 162 -653 479 -653 342 1 628 336 567 665 -49 269 -334 459 -609 404z"/> <path d="M13205 9407 c-284 -93 -459 -401 -391 -688 37 -158 209 -324 376 -363 426 -100 817 338 656 733 -58 143 -122 213 -257 282 -84 43 -84 43 -214 46 -87 2 -143 -2 -170 -10z"/> <path d="M5198 8968 c-18 -28 -84 -192 -94 -233 -9 -42 -157 -442 -201 -545 -20 -47 -46 -114 -59 -150 -12 -36 -46 -123 -75 -195 -62 -156 -155 -400 -233 -610 -14 -38 -37 -95 -51 -125 -28 -64 -82 -198 -131 -324 -19 -49 -39 -95 -44 -101 -6 -7 -21 -43 -34 -81 -13 -38 -34 -91 -48 -119 -14 -27 -29 -61 -33 -75 -4 -14 -26 -63 -47 -110 -43 -91 -60 -127 -163 -350 -37 -80 -85 -184 -106 -232 -50 -117 -326 -646 -444 -852 -377 -660 -839 -1212 -1299 -1551 -133 -99 -152 -111 -231 -157 -214 -124 -455 -196 -691 -205 -318 -13 -555 78 -792 304 -69 65 -89 68 -169 26 -97 -50 -112 -78 -78 -142 28 -54 200 -172 360 -245 364 -167 653 -185 1120 -71 464 114 914 442 1342 977 185 232 526 793 733 1208 197 394 430 905 569 1245 11 28 59 145 106 260 86 210 213 539 266 690 15 44 49 134 74 200 86 220 175 469 322 900 58 171 114 333 125 360 23 58 58 232 58 287 0 45 -28 53 -52 16z"/> <path d="M24375 7808 c-143 -4 -364 -17 -492 -28 -127 -12 -285 -20 -351 -18 -137 3 -172 -9 -172 -61 0 -37 21 -54 100 -80 227 -74 274 -245 187 -681 -21 -102 -55 -279 -78 -395 -22 -115 -60 -309 -84 -430 -24 -121 -80 -407 -125 -635 -44 -228 -96 -491 -115 -585 -19 -93 -45 -242 -59 -330 -14 -88 -36 -212 -48 -275 -32 -166 -32 -376 1 -480 128 -412 497 -583 941 -435 293 98 661 437 847 780 83 155 79 143 62 173 -37 68 -90 27 -204 -157 -279 -451 -586 -584 -711 -308 -39 85 -39 228 -1 397 15 63 34 158 42 210 9 52 25 129 35 170 11 41 26 118 35 170 8 52 31 169 49 260 19 91 43 212 54 270 12 58 30 152 41 210 12 58 39 200 62 315 22 116 51 266 65 335 14 69 38 195 54 280 112 609 150 806 206 1062 62 285 72 277 -341 266z"/> <path d="M22115 7740 c-88 -4 -279 -8 -425 -9 -287 -1 -310 -5 -310 -55 0 -29 23 -48 85 -71 111 -41 170 -101 201 -209 24 -86 15 -290 -21 -451 -14 -66 -35 -167 -45 -225 -11 -58 -42 -226 -70 -375 -28 -148 -66 -360 -86 -470 -151 -859 -246 -1192 -391 -1372 -19 -23 -44 -59 -56 -80 -136 -235 -432 -568 -612 -688 -254 -169 -537 -173 -701 -9 -125 123 -176 350 -141 614 34 247 59 399 83 500 14 58 36 161 49 230 13 69 35 179 49 245 13 66 43 217 66 335 22 118 50 260 61 315 11 55 32 161 45 235 14 74 36 187 49 250 13 63 29 153 35 200 6 47 24 153 40 235 17 83 39 202 50 265 10 63 35 192 55 285 41 195 39 232 -16 261 -32 16 -402 8 -764 -16 -77 -6 -223 -13 -325 -16 -200 -6 -246 -14 -255 -45 -9 -28 10 -47 58 -60 112 -30 190 -89 229 -174 35 -76 33 -295 -4 -450 -15 -60 -34 -160 -42 -222 -9 -62 -25 -153 -36 -203 -11 -50 -29 -148 -41 -218 -11 -70 -31 -176 -44 -237 -14 -60 -31 -155 -40 -210 -8 -55 -28 -165 -45 -245 -49 -235 -98 -488 -115 -590 -9 -52 -29 -162 -45 -245 -98 -514 -64 -902 100 -1146 217 -321 531 -447 957 -385 451 66 958 440 1313 968 93 138 121 170 137 155 11 -12 6 -86 -12 -153 -26 -102 -21 -351 11 -460 106 -368 405 -536 795 -448 131 29 281 93 379 162 253 178 524 476 616 677 27 58 23 85 -11 85 -34 0 -69 -33 -152 -144 -225 -299 -453 -450 -579 -384 -143 76 -175 223 -113 518 44 211 159 787 213 1070 26 135 60 310 76 390 16 80 52 264 80 410 27 146 61 321 75 390 13 69 34 181 45 250 20 122 54 301 107 565 14 72 32 164 40 205 29 146 29 205 0 234 -26 26 -26 26 -234 24 -114 -1 -280 -5 -368 -8z"/> <path d="M16310 7693 c-663 -69 -1132 -297 -1596 -775 -309 -319 -500 -645 -662 -1133 -141 -425 -194 -814 -162 -1185 16 -180 73 -483 109 -575 193 -500 564 -820 1004 -866 117 -12 313 -4 384 16 305 87 521 213 779 456 158 148 210 209 275 324 53 95 102 155 116 142 4 -4 -7 -81 -25 -170 -59 -304 -81 -422 -97 -542 -9 -66 -27 -167 -40 -225 -14 -58 -32 -152 -40 -209 -9 -58 -26 -152 -39 -210 -14 -58 -32 -160 -41 -226 -9 -66 -25 -155 -36 -198 -11 -42 -28 -137 -40 -210 -11 -72 -28 -173 -39 -224 -11 -50 -29 -172 -40 -270 -12 -98 -28 -236 -36 -308 -11 -89 -14 -171 -10 -257 6 -124 6 -128 -16 -142 -42 -27 -438 -165 -518 -181 -19 -3 -71 -17 -115 -30 -136 -40 -461 -109 -662 -139 -57 -9 -147 -23 -200 -31 -184 -29 -298 -36 -673 -42 -438 -7 -647 4 -895 47 -93 16 -206 34 -250 40 -283 40 -960 229 -1325 370 -544 210 -839 372 -1570 860 -129 87 -280 183 -335 215 -332 194 -503 308 -618 414 -98 91 -132 103 -163 56 -23 -36 -12 -69 83 -250 332 -625 850 -1087 1693 -1510 492 -247 1186 -454 1700 -506 107 -11 238 -27 290 -35 119 -19 858 -31 995 -16 50 6 164 18 255 27 249 24 563 64 675 85 55 11 154 29 220 40 318 55 730 162 1182 306 127 41 245 74 262 74 38 0 66 -26 91 -85 39 -91 161 -197 304 -263 172 -81 444 -110 731 -78 83 9 199 20 258 26 304 27 848 164 1232 310 518 197 809 371 1066 637 220 228 309 409 309 628 0 191 -95 310 -300 373 -248 76 -587 13 -1060 -198 -63 -29 -153 -68 -200 -88 -47 -20 -206 -97 -355 -172 -148 -75 -416 -211 -595 -301 -448 -227 -505 -253 -530 -239 -32 17 -32 47 0 225 17 94 44 247 60 340 16 94 38 208 48 255 11 47 23 110 27 140 4 30 20 123 35 205 16 83 34 186 40 230 12 88 60 358 120 675 22 113 46 257 55 320 9 63 25 154 36 202 10 48 26 133 34 190 9 57 29 159 45 228 16 69 36 170 45 225 8 55 27 147 40 205 13 58 29 141 35 185 6 44 24 136 40 205 16 69 31 145 35 170 3 25 21 128 40 230 19 102 44 237 54 300 25 143 65 349 97 500 14 63 38 187 54 276 16 88 36 190 45 227 8 37 24 124 35 194 11 71 31 189 44 263 57 307 59 326 44 357 -24 50 -41 52 -298 43 -129 -5 -314 -12 -410 -15 -277 -10 -280 -11 -280 -162 0 -131 -28 -142 -101 -41 -135 186 -455 302 -749 271z m286 -184 c88 -16 192 -70 256 -132 150 -148 241 -517 193 -782 -9 -44 -26 -152 -39 -240 -14 -88 -34 -198 -45 -245 -10 -47 -27 -134 -36 -195 -9 -60 -27 -162 -40 -225 -13 -63 -33 -170 -45 -238 -11 -68 -31 -167 -44 -220 -14 -53 -32 -144 -41 -202 -10 -57 -30 -145 -45 -195 -15 -49 -31 -106 -35 -125 -4 -19 -19 -60 -35 -90 -15 -30 -33 -73 -40 -95 -16 -52 -95 -200 -131 -246 -15 -19 -34 -48 -41 -65 -42 -94 -216 -334 -307 -424 -171 -168 -295 -220 -521 -220 -220 1 -395 120 -516 350 -58 111 -139 361 -153 470 -27 220 -34 466 -17 634 8 88 20 214 26 278 6 64 21 159 34 210 13 51 29 127 35 168 20 126 156 564 219 700 11 25 44 97 72 160 136 307 241 462 442 656 123 118 160 147 258 204 168 98 412 143 596 109z m2957 -5983 c110 -53 124 -115 45 -189 -368 -346 -1093 -663 -1893 -828 -160 -33 -363 -32 -435 2 -157 74 -260 252 -260 447 0 64 81 104 390 191 80 23 208 59 285 81 474 134 1022 264 1260 299 192 28 199 29 385 27 160 -1 167 -2 223 -30z"/> <path d="M13070 7589 c-195 -10 -450 -20 -566 -23 -236 -4 -267 -11 -272 -59 -5 -44 21 -64 98 -77 103 -17 151 -52 196 -142 46 -90 53 -164 30 -293 -9 -49 -27 -151 -40 -225 -14 -75 -36 -183 -49 -240 -14 -58 -33 -154 -41 -214 -9 -60 -27 -157 -41 -215 -13 -58 -33 -162 -45 -231 -12 -69 -27 -150 -35 -180 -8 -30 -25 -118 -39 -195 -13 -77 -34 -183 -46 -235 -12 -52 -30 -140 -39 -195 -10 -55 -30 -154 -44 -220 -14 -66 -37 -183 -51 -260 -14 -77 -34 -183 -45 -235 -21 -104 -57 -312 -73 -430 -32 -239 48 -490 201 -633 200 -184 549 -210 853 -62 244 118 428 287 633 580 125 179 136 197 133 229 -6 63 -85 28 -139 -62 -94 -155 -285 -348 -397 -400 -148 -68 -302 -15 -332 114 -24 103 -4 350 46 554 14 58 34 150 44 206 10 55 28 136 39 180 11 43 29 133 41 199 12 66 30 154 40 195 10 41 26 121 34 177 8 56 27 146 40 200 14 54 33 143 41 198 9 55 25 133 36 174 11 40 31 139 45 220 14 80 36 193 49 251 13 58 36 164 50 235 66 329 87 427 109 515 14 52 34 156 46 230 12 74 30 164 41 199 25 82 24 131 -2 165 -25 32 -28 32 -549 5z"/></g></svg><span class="f-sub">Pastelería</span><p class="f-bye">Gracias por <em>pasar</em>.</p><p class="f-firma">con amor, Miqui</p></div>
+    <div class="f-col f-ig"><a class="ig" href="https://www.instagram.com/soy.miqui_/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Seguime en Instagram</a><span class="ig-h">@soy.miqui_</span></div>
+    <div class="f-col f-loc"><svg class="pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><p>Lomas de Zamora ·<br>Retiro por domicilio</p></div>
+  </div>
+  <div class="f-util"><button id="irPanel">Acceso Miqui</button><span aria-hidden="true">·</span><a href="index.html?v=movil">Versión celular</a></div>
+  </div>
+</footer>
+</div>
+
+<!-- ================= PANEL ================= -->
+<div id="panel" class="panel" hidden>
+  <aside class="pside">
+    <div class="brand"><svg class="logo" viewBox="0 0 2516 1088" role="img" aria-label="Miqui"><g transform="translate(0.000000,1088.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M11115 10710 c-326 -4 -374 -7 -402 -22 -38 -21 -157 -198 -350 -523 -33 -55 -108 -176 -168 -270 -59 -93 -141 -224 -183 -290 -41 -66 -87 -138 -102 -160 -15 -22 -75 -119 -132 -215 -120 -200 -184 -303 -253 -410 -27 -41 -97 -154 -155 -250 -160 -262 -241 -391 -540 -865 -73 -115 -184 -293 -247 -395 -64 -102 -125 -201 -138 -220 -63 -98 -279 -442 -405 -645 -79 -126 -171 -275 -205 -330 -149 -239 -512 -827 -556 -900 -79 -133 -84 -140 -106 -143 -30 -4 -40 19 -48 118 -4 47 -15 139 -25 205 -11 66 -28 197 -40 290 -11 94 -27 206 -35 250 -7 44 -19 116 -25 160 -6 44 -29 197 -50 340 -21 143 -48 328 -59 410 -40 295 -101 711 -116 785 -8 41 -21 129 -30 195 -9 66 -25 172 -35 236 -11 64 -29 178 -39 255 -11 76 -53 375 -95 664 -70 478 -113 797 -151 1095 -7 61 -21 155 -30 210 -9 55 -20 133 -25 173 -19 150 -24 152 -313 152 -122 0 -265 5 -317 11 -121 14 -1129 13 -1263 -1 -55 -5 -133 -19 -176 -30 -42 -11 -122 -26 -176 -34 -55 -9 -148 -31 -207 -51 -59 -19 -113 -35 -122 -35 -8 0 -51 -16 -95 -35 -43 -19 -86 -35 -93 -35 -23 0 -265 -119 -416 -204 -279 -156 -621 -441 -828 -688 -196 -234 -435 -680 -489 -912 -8 -33 -23 -86 -34 -116 -36 -101 -84 -488 -78 -620 8 -150 43 -390 68 -460 11 -30 29 -80 39 -111 90 -270 357 -603 564 -704 53 -26 57 -27 81 -11 48 31 29 89 -55 171 -147 142 -241 325 -335 646 -64 217 -84 584 -45 819 119 723 465 1311 1018 1732 170 130 338 237 412 263 23 8 54 24 70 35 16 12 60 31 97 44 38 13 87 33 110 44 22 12 74 29 114 38 41 9 100 27 131 40 168 70 633 89 765 32 245 -107 365 -341 464 -903 42 -242 44 -260 25 -331 -26 -99 -22 -149 14 -180 37 -34 45 -60 65 -209 9 -66 27 -176 40 -245 13 -69 26 -145 30 -170 3 -25 22 -133 40 -240 19 -107 42 -247 50 -310 9 -63 24 -164 35 -225 11 -60 31 -184 45 -275 48 -319 115 -745 120 -760 6 -19 68 -446 100 -690 14 -102 34 -232 45 -290 11 -58 29 -177 40 -265 11 -88 29 -212 40 -275 11 -63 28 -191 40 -285 11 -93 31 -231 45 -305 13 -74 29 -191 36 -260 6 -69 19 -165 29 -215 10 -49 28 -157 40 -240 12 -82 30 -189 41 -237 10 -48 19 -108 19 -133 0 -65 22 -113 56 -121 34 -9 74 12 91 46 57 118 134 249 373 640 45 74 92 151 103 170 20 35 130 212 217 350 27 41 85 138 130 215 45 77 111 183 145 235 77 115 262 415 370 600 43 74 126 209 183 300 58 91 187 300 287 465 175 289 248 406 535 860 73 116 187 298 253 405 66 107 136 220 157 250 20 30 73 116 119 190 45 74 108 176 140 225 32 50 123 194 201 320 78 127 167 271 198 320 30 50 90 144 132 210 137 212 290 466 382 630 92 163 121 205 145 205 21 0 16 -56 -22 -243 -19 -94 -42 -219 -50 -277 -9 -58 -31 -193 -50 -300 -18 -107 -36 -222 -40 -255 -3 -33 -19 -139 -35 -235 -16 -96 -36 -227 -45 -290 -9 -63 -25 -153 -35 -200 -10 -47 -28 -152 -40 -235 -12 -82 -32 -204 -45 -270 -13 -66 -31 -174 -40 -240 -8 -66 -24 -165 -35 -220 -11 -55 -29 -158 -40 -230 -11 -71 -31 -186 -45 -255 -13 -69 -29 -163 -35 -210 -6 -47 -24 -152 -40 -235 -16 -82 -34 -186 -40 -230 -6 -44 -22 -138 -36 -209 -14 -72 -34 -191 -44 -265 -11 -75 -33 -206 -49 -291 -118 -624 -162 -1176 -117 -1475 36 -245 170 -446 358 -541 122 -61 160 -66 583 -71 429 -5 625 5 655 32 49 44 11 81 -107 107 -140 29 -213 94 -289 253 -70 146 -83 435 -35 755 66 443 90 597 100 640 5 25 22 119 36 210 14 90 30 181 35 201 10 37 75 409 129 739 16 96 38 216 49 265 11 50 25 130 32 179 6 49 22 143 36 210 13 66 34 177 45 246 11 69 31 172 44 230 13 58 31 160 40 228 9 68 25 162 35 210 10 48 28 148 40 222 11 74 31 185 45 245 13 61 31 164 40 230 9 66 25 158 35 205 11 47 28 157 40 245 12 88 30 198 40 246 11 47 26 141 35 209 19 160 109 613 134 682 11 29 25 76 32 103 27 111 144 303 235 386 124 112 371 207 541 209 83 0 123 43 76 81 -18 15 -722 20 -1458 9z"/> <path d="M24312 9649 c-203 -40 -384 -212 -437 -416 -83 -320 162 -653 479 -653 342 1 628 336 567 665 -49 269 -334 459 -609 404z"/> <path d="M13205 9407 c-284 -93 -459 -401 -391 -688 37 -158 209 -324 376 -363 426 -100 817 338 656 733 -58 143 -122 213 -257 282 -84 43 -84 43 -214 46 -87 2 -143 -2 -170 -10z"/> <path d="M5198 8968 c-18 -28 -84 -192 -94 -233 -9 -42 -157 -442 -201 -545 -20 -47 -46 -114 -59 -150 -12 -36 -46 -123 -75 -195 -62 -156 -155 -400 -233 -610 -14 -38 -37 -95 -51 -125 -28 -64 -82 -198 -131 -324 -19 -49 -39 -95 -44 -101 -6 -7 -21 -43 -34 -81 -13 -38 -34 -91 -48 -119 -14 -27 -29 -61 -33 -75 -4 -14 -26 -63 -47 -110 -43 -91 -60 -127 -163 -350 -37 -80 -85 -184 -106 -232 -50 -117 -326 -646 -444 -852 -377 -660 -839 -1212 -1299 -1551 -133 -99 -152 -111 -231 -157 -214 -124 -455 -196 -691 -205 -318 -13 -555 78 -792 304 -69 65 -89 68 -169 26 -97 -50 -112 -78 -78 -142 28 -54 200 -172 360 -245 364 -167 653 -185 1120 -71 464 114 914 442 1342 977 185 232 526 793 733 1208 197 394 430 905 569 1245 11 28 59 145 106 260 86 210 213 539 266 690 15 44 49 134 74 200 86 220 175 469 322 900 58 171 114 333 125 360 23 58 58 232 58 287 0 45 -28 53 -52 16z"/> <path d="M24375 7808 c-143 -4 -364 -17 -492 -28 -127 -12 -285 -20 -351 -18 -137 3 -172 -9 -172 -61 0 -37 21 -54 100 -80 227 -74 274 -245 187 -681 -21 -102 -55 -279 -78 -395 -22 -115 -60 -309 -84 -430 -24 -121 -80 -407 -125 -635 -44 -228 -96 -491 -115 -585 -19 -93 -45 -242 -59 -330 -14 -88 -36 -212 -48 -275 -32 -166 -32 -376 1 -480 128 -412 497 -583 941 -435 293 98 661 437 847 780 83 155 79 143 62 173 -37 68 -90 27 -204 -157 -279 -451 -586 -584 -711 -308 -39 85 -39 228 -1 397 15 63 34 158 42 210 9 52 25 129 35 170 11 41 26 118 35 170 8 52 31 169 49 260 19 91 43 212 54 270 12 58 30 152 41 210 12 58 39 200 62 315 22 116 51 266 65 335 14 69 38 195 54 280 112 609 150 806 206 1062 62 285 72 277 -341 266z"/> <path d="M22115 7740 c-88 -4 -279 -8 -425 -9 -287 -1 -310 -5 -310 -55 0 -29 23 -48 85 -71 111 -41 170 -101 201 -209 24 -86 15 -290 -21 -451 -14 -66 -35 -167 -45 -225 -11 -58 -42 -226 -70 -375 -28 -148 -66 -360 -86 -470 -151 -859 -246 -1192 -391 -1372 -19 -23 -44 -59 -56 -80 -136 -235 -432 -568 -612 -688 -254 -169 -537 -173 -701 -9 -125 123 -176 350 -141 614 34 247 59 399 83 500 14 58 36 161 49 230 13 69 35 179 49 245 13 66 43 217 66 335 22 118 50 260 61 315 11 55 32 161 45 235 14 74 36 187 49 250 13 63 29 153 35 200 6 47 24 153 40 235 17 83 39 202 50 265 10 63 35 192 55 285 41 195 39 232 -16 261 -32 16 -402 8 -764 -16 -77 -6 -223 -13 -325 -16 -200 -6 -246 -14 -255 -45 -9 -28 10 -47 58 -60 112 -30 190 -89 229 -174 35 -76 33 -295 -4 -450 -15 -60 -34 -160 -42 -222 -9 -62 -25 -153 -36 -203 -11 -50 -29 -148 -41 -218 -11 -70 -31 -176 -44 -237 -14 -60 -31 -155 -40 -210 -8 -55 -28 -165 -45 -245 -49 -235 -98 -488 -115 -590 -9 -52 -29 -162 -45 -245 -98 -514 -64 -902 100 -1146 217 -321 531 -447 957 -385 451 66 958 440 1313 968 93 138 121 170 137 155 11 -12 6 -86 -12 -153 -26 -102 -21 -351 11 -460 106 -368 405 -536 795 -448 131 29 281 93 379 162 253 178 524 476 616 677 27 58 23 85 -11 85 -34 0 -69 -33 -152 -144 -225 -299 -453 -450 -579 -384 -143 76 -175 223 -113 518 44 211 159 787 213 1070 26 135 60 310 76 390 16 80 52 264 80 410 27 146 61 321 75 390 13 69 34 181 45 250 20 122 54 301 107 565 14 72 32 164 40 205 29 146 29 205 0 234 -26 26 -26 26 -234 24 -114 -1 -280 -5 -368 -8z"/> <path d="M16310 7693 c-663 -69 -1132 -297 -1596 -775 -309 -319 -500 -645 -662 -1133 -141 -425 -194 -814 -162 -1185 16 -180 73 -483 109 -575 193 -500 564 -820 1004 -866 117 -12 313 -4 384 16 305 87 521 213 779 456 158 148 210 209 275 324 53 95 102 155 116 142 4 -4 -7 -81 -25 -170 -59 -304 -81 -422 -97 -542 -9 -66 -27 -167 -40 -225 -14 -58 -32 -152 -40 -209 -9 -58 -26 -152 -39 -210 -14 -58 -32 -160 -41 -226 -9 -66 -25 -155 -36 -198 -11 -42 -28 -137 -40 -210 -11 -72 -28 -173 -39 -224 -11 -50 -29 -172 -40 -270 -12 -98 -28 -236 -36 -308 -11 -89 -14 -171 -10 -257 6 -124 6 -128 -16 -142 -42 -27 -438 -165 -518 -181 -19 -3 -71 -17 -115 -30 -136 -40 -461 -109 -662 -139 -57 -9 -147 -23 -200 -31 -184 -29 -298 -36 -673 -42 -438 -7 -647 4 -895 47 -93 16 -206 34 -250 40 -283 40 -960 229 -1325 370 -544 210 -839 372 -1570 860 -129 87 -280 183 -335 215 -332 194 -503 308 -618 414 -98 91 -132 103 -163 56 -23 -36 -12 -69 83 -250 332 -625 850 -1087 1693 -1510 492 -247 1186 -454 1700 -506 107 -11 238 -27 290 -35 119 -19 858 -31 995 -16 50 6 164 18 255 27 249 24 563 64 675 85 55 11 154 29 220 40 318 55 730 162 1182 306 127 41 245 74 262 74 38 0 66 -26 91 -85 39 -91 161 -197 304 -263 172 -81 444 -110 731 -78 83 9 199 20 258 26 304 27 848 164 1232 310 518 197 809 371 1066 637 220 228 309 409 309 628 0 191 -95 310 -300 373 -248 76 -587 13 -1060 -198 -63 -29 -153 -68 -200 -88 -47 -20 -206 -97 -355 -172 -148 -75 -416 -211 -595 -301 -448 -227 -505 -253 -530 -239 -32 17 -32 47 0 225 17 94 44 247 60 340 16 94 38 208 48 255 11 47 23 110 27 140 4 30 20 123 35 205 16 83 34 186 40 230 12 88 60 358 120 675 22 113 46 257 55 320 9 63 25 154 36 202 10 48 26 133 34 190 9 57 29 159 45 228 16 69 36 170 45 225 8 55 27 147 40 205 13 58 29 141 35 185 6 44 24 136 40 205 16 69 31 145 35 170 3 25 21 128 40 230 19 102 44 237 54 300 25 143 65 349 97 500 14 63 38 187 54 276 16 88 36 190 45 227 8 37 24 124 35 194 11 71 31 189 44 263 57 307 59 326 44 357 -24 50 -41 52 -298 43 -129 -5 -314 -12 -410 -15 -277 -10 -280 -11 -280 -162 0 -131 -28 -142 -101 -41 -135 186 -455 302 -749 271z m286 -184 c88 -16 192 -70 256 -132 150 -148 241 -517 193 -782 -9 -44 -26 -152 -39 -240 -14 -88 -34 -198 -45 -245 -10 -47 -27 -134 -36 -195 -9 -60 -27 -162 -40 -225 -13 -63 -33 -170 -45 -238 -11 -68 -31 -167 -44 -220 -14 -53 -32 -144 -41 -202 -10 -57 -30 -145 -45 -195 -15 -49 -31 -106 -35 -125 -4 -19 -19 -60 -35 -90 -15 -30 -33 -73 -40 -95 -16 -52 -95 -200 -131 -246 -15 -19 -34 -48 -41 -65 -42 -94 -216 -334 -307 -424 -171 -168 -295 -220 -521 -220 -220 1 -395 120 -516 350 -58 111 -139 361 -153 470 -27 220 -34 466 -17 634 8 88 20 214 26 278 6 64 21 159 34 210 13 51 29 127 35 168 20 126 156 564 219 700 11 25 44 97 72 160 136 307 241 462 442 656 123 118 160 147 258 204 168 98 412 143 596 109z m2957 -5983 c110 -53 124 -115 45 -189 -368 -346 -1093 -663 -1893 -828 -160 -33 -363 -32 -435 2 -157 74 -260 252 -260 447 0 64 81 104 390 191 80 23 208 59 285 81 474 134 1022 264 1260 299 192 28 199 29 385 27 160 -1 167 -2 223 -30z"/> <path d="M13070 7589 c-195 -10 -450 -20 -566 -23 -236 -4 -267 -11 -272 -59 -5 -44 21 -64 98 -77 103 -17 151 -52 196 -142 46 -90 53 -164 30 -293 -9 -49 -27 -151 -40 -225 -14 -75 -36 -183 -49 -240 -14 -58 -33 -154 -41 -214 -9 -60 -27 -157 -41 -215 -13 -58 -33 -162 -45 -231 -12 -69 -27 -150 -35 -180 -8 -30 -25 -118 -39 -195 -13 -77 -34 -183 -46 -235 -12 -52 -30 -140 -39 -195 -10 -55 -30 -154 -44 -220 -14 -66 -37 -183 -51 -260 -14 -77 -34 -183 -45 -235 -21 -104 -57 -312 -73 -430 -32 -239 48 -490 201 -633 200 -184 549 -210 853 -62 244 118 428 287 633 580 125 179 136 197 133 229 -6 63 -85 28 -139 -62 -94 -155 -285 -348 -397 -400 -148 -68 -302 -15 -332 114 -24 103 -4 350 46 554 14 58 34 150 44 206 10 55 28 136 39 180 11 43 29 133 41 199 12 66 30 154 40 195 10 41 26 121 34 177 8 56 27 146 40 200 14 54 33 143 41 198 9 55 25 133 36 174 11 40 31 139 45 220 14 80 36 193 49 251 13 58 36 164 50 235 66 329 87 427 109 515 14 52 34 156 46 230 12 74 30 164 41 199 25 82 24 131 -2 165 -25 32 -28 32 -549 5z"/></g></svg><span>panel</span></div>
+    <span class="demo">Demo · datos de ejemplo</span>
+    <nav aria-label="Panel">
+      <button data-ptab="agenda" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</button>
+      <button data-ptab="prod"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>Producción</button>
+      <button data-ptab="menu"><svg viewBox="0 0 24 24"><path d="M3 18l9-13 9 13zM3 18h18"/></svg>Menú del finde</button>
+      <button data-ptab="web"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Mi web</button>
+    </nav>
+    <div class="bottom"><button id="irTienda">← Ver la tienda</button><button id="reset">Reiniciar demo</button></div>
+  </aside>
+  <main class="pmain vt" id="pmain">
+    <section class="view on" id="p-agenda" aria-labelledby="h-ag">
+      <div class="ptitle"><h1 class="display" id="h-ag">Agenda</h1><div style="display:flex;align-items:center"><div class="vista" id="vista" role="group" aria-label="Vista"></div><div class="dias-p" id="diasP" role="group" aria-label="Elegir día"></div></div></div>
+      <div class="stats" id="stats" aria-live="polite"></div>
+      <div class="kanban" id="kanban"></div>
+    </section>
+    <section class="view" id="p-prod" aria-labelledby="h-prod">
+      <div class="ptitle"><div><h1 class="display" id="h-prod">Para <em>producir</em></h1><p class="muted">Se arma sola con los pedidos. Tildá a medida que avanzás.</p></div></div>
+      <div class="two"><div><h2 class="h3p">Porciones del finde</h2><ul class="prodlist" id="prodlist"></ul></div><div><h2 class="h3p">Tortas por encargo</h2><div id="briefs"></div></div></div>
+    </section>
+    <section class="view" id="p-menu" aria-labelledby="h-menu">
+      <div class="ptitle"><h1 class="display" id="h-menu">Menú del <em>finde</em></h1></div>
+      <div class="switch"><div><b id="swTxt">Reservas abiertas</b><span class="small muted">Las clientas pueden reservar porciones</span></div><button class="tog" id="tog" role="switch" aria-checked="true" aria-labelledby="swTxt"></button></div>
+      <div class="stocks" id="stocks"></div>
+    </section>
+    <section class="view" id="p-web" aria-labelledby="h-web">
+      <div class="ptitle"><div><h1 class="display" id="h-web">Mi <em>web</em></h1><p class="muted">Cambiá fotos, tortas y textos. Se ve al instante.</p></div></div>
+      <div id="webEd"></div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden role="status"><span id="toastTxt"></span><button id="toastBtn">Deshacer</button></div>
+
+<!-- ================= MODALS ================= -->
+<dialog class="modal wide" id="dQv" aria-labelledby="qvTitle">
+  <div class="qv">
+    <div class="ph" id="qvImg"></div>
+    <div class="info">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:12px"><p class="eyebrow" id="qvLinea"></p><button class="x" data-close aria-label="Cerrar">×</button></div>
+      <h2 class="display" id="qvTitle"></h2>
+      <p id="qvDesc" class="muted"></p>
+      <div class="sizes" id="qvSizes"></div>
+      <p class="small muted">Rellenos a elección. Precios de ejemplo.</p>
+      <button class="btn block" id="qvArmar" style="margin-top:auto">Armar mi torta</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal xl" id="dConf" aria-labelledby="confTitle">
+  <div class="conf">
+    <div class="conf-prev">
+      <div style="display:flex;justify-content:space-between;align-items:center"><p class="eyebrow">Tu torta</p></div>
+      <div class="pv" id="cfPv"></div>
+      <h2 class="display" id="confTitle"></h2>
+      <div class="picked" id="cfPicked"></div>
+      <p class="small muted">Vista previa ilustrativa. El diseño final lo charlás con Miqui.</p>
+    </div>
+    <div class="conf-main">
+      <div class="m-head" style="border:0;padding-bottom:0"><span class="muted small">Completá los 4 pasos · podés ir y volver</span><button class="x" data-close aria-label="Cerrar">×</button></div>
+      <div class="conf-scroll" id="cfBody"></div>
+      <div class="conf-foot">
+        <div><span>Total estimado</span><b id="cfTotal">$0</b></div>
+        <div><span>Seña 50%</span><b id="cfSena">$0</b></div>
+        <button class="btn" id="cfOk" style="justify-self:end">Simular pago de seña</button>
+        <p class="falta" id="cfFalta" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="dMesa" aria-labelledby="mTitle">
+  <div class="m-head"><h2 id="mTitle">Contale tu idea</h2><button class="x" data-close aria-label="Cerrar">×</button></div>
+  <div class="m-body" id="mBody"></div>
+  <div class="m-foot"><button class="btn block" id="mOk">Armar mensaje de WhatsApp</button></div>
+</dialog>
+
+<dialog class="modal" id="dOk" aria-labelledby="okTitle">
+  <div class="m-body" style="text-align:center">
+    <div class="ok-ico" aria-hidden="true">🎂</div>
+    <h2 class="display" style="font-size:40px" id="okTitle">¡Listo!</h2>
+    <p class="aviso" style="margin-top:14px">Simulación: no reservaste ni pagaste nada.</p>
+    <p id="okTxt" class="muted"></p>
+    <div class="wa" id="okWa"></div><p class="wa-cap" id="okCap">Mensaje que te llegaría por WhatsApp</p>
+  </div>
+  <div class="m-foot" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn ghost" data-close>Seguir mirando</button><button class="btn" id="okPanel">Ver cómo le llega a Miqui</button></div>
+</dialog>
+
+<dialog class="modal" id="dWa" aria-labelledby="waTitle">
+  <div class="m-head"><h2 id="waTitle">Mensaje para la clienta</h2><button class="x" data-close aria-label="Cerrar">×</button></div>
+  <div class="m-body"><div class="campo"><label for="waTxt">Podés editarlo antes de enviar</label><textarea id="waTxt" rows="5"></textarea></div></div>
+  <div class="m-foot"><button class="btn block" id="waOk">Abrir WhatsApp (simulado)</button></div>
+</dialog>
+
+<dialog class="modal" id="dSi" aria-labelledby="siTitle">
+  <div class="m-body"><h2 class="display" style="font-size:32px" id="siTitle"></h2><p class="muted" id="siTxt" style="margin-top:10px"></p></div>
+  <div class="m-foot" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn ghost" data-close>Cancelar</button><button class="btn" id="siOk"></button></div>
+</dialog>
+
+<dialog class="st" id="dStory" aria-label="Historias">
+  <div class="st-shell">
+    <button class="st-arrow" id="stPrev" aria-label="Anterior">‹</button>
+    <div class="st-wrap">
+      <img id="stImg" alt="">
+      <div class="st-bars" id="stBars" aria-hidden="true"></div>
+      <div class="st-top"><span id="stName"></span><span style="display:flex;gap:8px"><button class="x" id="stPause" aria-label="Pausar historias" aria-pressed="false">❚❚</button><button class="x" data-close aria-label="Cerrar historias">×</button></span></div>
+      <div class="st-cap" aria-live="polite"><h2 id="stH"></h2><p id="stP"></p><button class="btn" id="stCta" hidden></button></div>
+    </div>
+    <button class="st-arrow" id="stNext" aria-label="Siguiente">›</button>
+  </div>
+</dialog>
+
+<script src="datos.js"></script>
+<script src="admin.js"></script>
+<script>
+if(typeof DATOS_REALES!=="undefined"&&DATOS_REALES) document.querySelectorAll(".demo").forEach(e=>e.hidden=true);
+/* ========================= ESTADO (compartido con la versión celular) ========================= */
+const KEY="miqui-demo-b";
+function fresh(){return {pedidos:structuredClone(PEDIDOS0), menu:structuredClone(MENU0), franjas:structuredClone(FRANJAS), abierto:true, carrito:{}, nextId:100, hechos:{}}}
+let S; try{S=JSON.parse(localStorage.getItem(KEY))||fresh()}catch{S=fresh()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));return true}catch{toast("No se pudo guardar en este navegador.");return false}};
+const WKEY="miqui-web-b";
+function freshWeb(){return {tortas:structuredClone(TORTAS).map((t,i)=>({...t,visible:true,destacada:i<5})), fotos:{hero:"1615735486329-c61cd40bfcc6",heroSec:"1615735487485-e52b9af610c1",mesa:"1769812343484-df7391e843d6"}, textos:{sub:"Tortas a tu medida y porciones para el finde. Hechas en Lomas, para retirar por casa.",fecha:"Sáb 7 y Dom 8 de noviembre",cierre:"Reservás hasta el jueves 5, 20 h"}}}
+let W; try{W=JSON.parse(localStorage.getItem(WKEY))||freshWeb()}catch{W=freshWeb()}
+function saveWeb(){try{localStorage.setItem(WKEY,JSON.stringify(W));return true}catch(e){toast("No se pudo guardar: este navegador se quedó sin espacio para el boceto. Si subiste una foto, probá con una más chica.");return false}}
+
+
+/* ========================= UTILS ========================= */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const plata=n=>"$"+Math.round(n).toLocaleString("es-AR");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 3"><rect width="4" height="3" fill="#F2D0D0"/></svg>');
+const U=(id,w)=>!id?PH:/^(data:|https?:|blob:)/.test(id)?id:`https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+const img=(id,alt,w=400,eager=false)=>`<img src="${U(id,w)}"${/^(data:|blob:)/.test(id||"")||!id?"":` srcset="${U(id,w)} 1x, ${U(id,w*2)} 2x"`} alt="${esc(alt)}" loading="${eager?"eager":"lazy"}" decoding="async">`;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fecha=(iso,o={weekday:"short",day:"numeric",month:"short"})=>new Date(iso+"T12:00:00").toLocaleDateString("es-AR",o);
+function vt(fn){ if(document.startViewTransition&&!reduce){const t=document.startViewTransition(fn); t.ready.catch(()=>{}); t.finished.catch(()=>{});} else fn(); }
+function hydrate(root=document){root.querySelectorAll("img[data-img]").forEach(i=>{const w=+i.dataset.w||400;i.src=U(i.dataset.img,w);i.srcset=`${U(i.dataset.img,w)} 1x, ${U(i.dataset.img,w*2)} 2x`;i.loading="lazy";i.removeAttribute("data-img")})}
+let toastTimer;
+function toast(txt,undo){
+  $("#toastTxt").textContent=txt; const b=$("#toastBtn"); b.hidden=!undo; b.onclick=()=>{undo();$("#toast").hidden=true};
+  $("#toast").hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>$("#toast").hidden=true,undo?10000:6000);
+}
+const radio=(name,val,checked,label,sub,dis)=>`<div class="opt"><input type="radio" name="${name}" id="${name}-${val.replace(/\W/g,"")}" value="${val}" ${checked?"checked":""} ${dis?"disabled":""}><label for="${name}-${val.replace(/\W/g,"")}">${label}${sub?`<small>${sub}</small>`:""}</label></div>`;
+function animNum(el,to){
+  const from=+el.dataset.v||0; el.dataset.v=to; if(reduce||from===to){el.textContent=plata(to);return}
+  const t0=performance.now(); const f=n=>{const k=Math.min(1,(n-t0)/300); el.textContent=plata(from+(to-from)*(1-(1-k)**3)); if(k<1) requestAnimationFrame(f)}; requestAnimationFrame(f);
+}
+
+/* ========================= MODALS ========================= */
+let opener=null;
+function openSheet(d){opener=document.activeElement; d.showModal(); history.pushState({sheet:d.id},"");}
+function swapSheet(from,to){from.close(); to.showModal(); history.replaceState({sheet:to.id},"");}
+function closeSheet(d){ if(!d.open) return; d.close(); if(history.state?.sheet) history.back(); if(opener?.isConnected&&opener.offsetParent) opener.focus(); }
+addEventListener("popstate",()=>{const had=$$("dialog[open]"); had.forEach(d=>d.close()); stopStory(); if(had.length&&opener?.isConnected&&opener.offsetParent) opener.focus();});
+$$("dialog").forEach(d=>{
+  d.addEventListener("cancel",e=>{e.preventDefault();closeSheet(d)});
+  d.addEventListener("click",e=>{ if(e.target===d||e.target.classList.contains("st-shell")) closeSheet(d); if(e.target.closest("[data-close]")) closeSheet(d); });
+});
+
+/* ========================= NAV ========================= */
+let current="inicio";
+function tab(t,anchor){
+  vt(()=>{
+    current=t;
+    $$("#tienda .view").forEach(v=>v.classList.toggle("on",v.id==="v-"+t));
+    $$(".nav button").forEach(b=>b.dataset.tab===t&&!b.dataset.go?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current"));
+    if(anchor) $("#"+anchor).scrollIntoView(); else scrollTo(0,0);
+    if(t==="finde") renderFinde();
+  });
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-tab]"); if(t&&!t.closest("dialog")){tab(t.dataset.tab,t.dataset.go);return}
+  const s=e.target.closest("[data-story]"); if(s){openStory(+s.dataset.story);return}
+  const c=e.target.closest("[data-consulta]"); if(c){openMesa(c.dataset.consulta);return}
+  const k=e.target.closest("[data-torta]"); if(k) openQv(k.dataset.torta);
+});
+addEventListener("scroll",()=>$("#hdr").classList.toggle("scrolled",scrollY>8),{passive:true});
+
+/* ========================= INICIO ========================= */
+function scallop(){let d="M0 18V9";for(let x=0;x<1200;x+=24)d+=`Q${x+12} 0 ${x+24} 9`;$("#scallopPath").setAttribute("d",d+"V18Z")}
+const desde=t=>TAMANOS[0].precio+t.extra;
+const cardTorta=t=>`<button class="card" data-torta="${t.id}" aria-label="${esc(t.nombre)}, desde ${plata(desde(t))}"><div class="ph">${img(t.img,t.alt,400)}<span class="ver" aria-hidden="true">Ver detalles</span></div><h3>${esc(t.nombre)}</h3><p class="meta">${t.linea} · 10 a 25 porciones</p><p class="price" style="margin-top:2px">desde ${plata(desde(t))}</p></button>`;
+let homeOc="todas";
+function renderInicio(){
+  MiWeb.applyWeb();
+  scallop();
+  $("#pmList").innerHTML=S.menu.slice(0,5).map((m,i)=>`<li><button data-pm="${i}" ${i===0?'aria-current="true"':""} data-tab="finde"><span class="n">${String(i+1).padStart(2,"0")}</span><span>${esc(m.nombre)}</span><span class="price">${plata(m.precio)}</span></button></li>`).join("");
+  pmShow(0);
+  $("#chipsHome").innerHTML=OCASIONES.map(([k,v])=>`<button class="chip" data-hoc="${k}" aria-pressed="${k===homeOc}">${v}</button>`).join("");
+  $("#gridHome").innerHTML=(homeOc==="todas"?MiWeb.destacadas():MiWeb.visibles().filter(t=>t.oc.includes(homeOc))).slice(0,3).map(cardTorta).join("");
+  hydrate();
+}
+function pmShow(i){const m=S.menu[i]; const im=$("#pmImg"); if(!m){im.removeAttribute("src"); im.alt=""; return;} if(!reduce){im.style.opacity=.2; setTimeout(()=>{im.src=U(m.img,600); im.alt=m.nombre; im.onload=()=>im.style.opacity=1},120)} else {im.src=U(m.img,600); im.alt=m.nombre;}
+  $$("#pmList button").forEach(b=>b.toggleAttribute("aria-current",+b.dataset.pm===i)); $$("#pmList button[aria-current]").forEach(b=>b.setAttribute("aria-current","true"));}
+let pmLast=0;
+["mouseover","focusin"].forEach(ev=>$("#pmList").addEventListener(ev,e=>{const b=e.target.closest("[data-pm]"); if(b&&+b.dataset.pm!==pmLast){pmLast=+b.dataset.pm; pmShow(pmLast)}}));
+$("#chipsHome").addEventListener("click",e=>{const b=e.target.closest("[data-hoc]"); if(!b) return; homeOc=b.dataset.hoc; vt(()=>{renderInicio(); $(`[data-hoc="${homeOc}"]`).focus();});});
+
+/* ========================= TORTAS ========================= */
+let filtro="todas";
+function renderTortas(){
+  $("#chipsTortas").innerHTML=OCASIONES.map(([k,v])=>`<button class="chip" data-f="${k}" aria-pressed="${k===filtro}">${v}</button>`).join("");
+  const l=MiWeb.visibles().filter(t=>filtro==="todas"||t.oc.includes(filtro));
+  $("#gridTortas").innerHTML=l.map(cardTorta).join("")||`<p class="muted">No hay tortas para esta ocasión.</p>`;
+}
+$("#chipsTortas").addEventListener("click",e=>{const b=e.target.closest("[data-f]"); if(!b) return; filtro=b.dataset.f; vt(()=>{renderTortas(); $(`[data-f="${filtro}"]`).focus();});});
+let qvTorta=null;
+function openQv(id){
+  const t=W.tortas.find(x=>x.id===id); qvTorta=t;
+  $("#qvImg").innerHTML=img(t.img,t.alt,700,true)+`${MiWeb.own(t.img)?"":`<span class="tag">Foto ilustrativa</span>`}`;
+  $("#qvLinea").textContent=t.linea; $("#qvTitle").textContent=t.nombre; $("#qvDesc").textContent=t.desc;
+  $("#qvSizes").innerHTML=TAMANOS.map(s=>`<div><span>${s.nombre} · ${s.porc}</span><span class="price">${plata(s.precio+t.extra)}</span></div>`).join("");
+  openSheet($("#dQv"));
+}
+$("#qvArmar").onclick=()=>{startBuilder(qvTorta); abierto=0; swapSheet($("#dQv"),$("#dConf")); renderConf(); $("[data-blk=\"0\"]").focus();};
+
+/* ========================= CONFIGURADOR ========================= */
+let B;
+function startBuilder(t){B={torta:t,tamano:null,relleno:null,dia:null,franja:null,texto:"",colores:"",ref:"",nombre:"",tel:"",pago:"mp"};}
+const total=()=>B.tamano?TAMANOS.find(s=>s.id===B.tamano).precio+B.torta.extra+(RELLENOS.find(r=>r.id===B.relleno)?.extra||0):0;
+function capacidad(iso){
+  const d=new Date(iso+"T12:00:00"), dow=d.getDay(), min=new Date(DEMO_HOY+"T12:00:00"); min.setDate(min.getDate()+3);
+  if(d<min) return {ok:false,txt:"Con 72 h"};
+  if(dow===1) return {ok:false,txt:"Cerrado"};
+  const base={"2026-11-07":3,"2026-11-11":3,"2026-11-14":2,"2026-11-08":1}[iso]||0, nuevas=S.pedidos.filter(p=>p.tipo==="torta"&&p.id>=100&&p.pagado>0&&p.dia===iso).length, quedan=3-base-nuevas;
+  return quedan<=0?{ok:false,txt:"Sin cupo"}:{ok:true,txt:quedan===1?"Queda 1":`Quedan ${quedan}`};
+}
+function calendario(){
+  // semanas lun-dom del 2 al 22 de noviembre; reservable del 7 al 22
+  const start=new Date("2026-11-02T12:00:00"); let h=["lun","mar","mié","jue","vie","sáb","dom"].map(d=>`<span class="dh">${d}</span>`).join("");
+  for(let i=0;i<21;i++){const d=new Date(start); d.setDate(start.getDate()+i); const iso=d.toISOString().slice(0,10);
+    if(iso<=DEMO_HOY){h+=`<span class="vac" aria-hidden="true"></span>`;continue}
+    const c=capacidad(iso); h+=radio("dia",iso,B.dia===iso,`<b>${d.getDate()}</b>`,c.txt,!c.ok);}
+  return `<div class="cal" role="radiogroup" aria-label="Día de retiro, noviembre 2026">${h}</div>`;
+}
+const okTag=c=>c?`<span class="ok">Listo</span>`:"";
+let abierto=0;
+function resumenes(){
+  const s=TAMANOS.find(x=>x.id===B.tamano), r=RELLENOS.find(x=>x.id===B.relleno);
+  return [s&&r?`${s.nombre} (${s.porc}) · ${r.nombre}`:"Sin elegir todavía",
+    B.dia&&B.franja?`${fecha(B.dia,{weekday:"long",day:"numeric",month:"long"})} · ${B.franja}`:"Sin elegir todavía",
+    [B.texto&&`«${B.texto}»`,B.colores,B.ref&&"con foto de referencia"].filter(Boolean).join(" · ")||"Sin detalles (opcional)",
+    datosOk()?`${B.nombre.trim()} · seña por ${B.pago==="mp"?"Mercado Pago":"efectivo"}`:"Falta completar"];
+}
+function blk(i,title,body,cont){
+  const sum=resumenes()[i], open=i===abierto;
+  return `<section class="blk${open?" open":""}"><h3><button class="blk-btn" data-blk="${i}" aria-expanded="${open}" aria-controls="blk${i}"><span class="k">${i+1}</span>${title}</button></h3>
+    <p class="sumtxt">${esc(sum)}</p><div class="blk-body" id="blk${i}">${body}${cont?`<button class="btn ghost cont" data-cont="${i}">Continuar</button>`:""}</div></section>`;
+}
+function renderConf(){
+  const t=B.torta, s=TAMANOS.find(x=>x.id===B.tamano), r=RELLENOS.find(x=>x.id===B.relleno);
+  $("#confTitle").textContent=t.nombre;
+  $("#cfPv").innerHTML=img(t.img,"",700,true)+`<p id="pvTxt">${esc(B.texto)||"&nbsp;"}</p>`;
+  $("#cfBody").innerHTML=
+  blk(0,"Tamaño y relleno",`<fieldset class="fieldset"><legend>Tamaño</legend><div class="opts three">${TAMANOS.map(s=>radio("tam",s.id,B.tamano===s.id,s.nombre,`${s.porc} · ${plata(s.precio+t.extra)}`)).join("")}</div></fieldset>
+    <fieldset class="fieldset" style="margin:0"><legend>Relleno</legend><div class="opts three">${RELLENOS.map(r=>radio("rel",r.id,B.relleno===r.id,r.nombre,r.extra?`+${plata(r.extra)}`:"Sin costo extra")).join("")}</div></fieldset>`,true)+
+  blk(1,"¿Para cuándo?",`<p class="small muted" style="margin:-4px 0 14px">Noviembre 2026 · cupos de ejemplo · pedidos con 72 h de anticipación.</p>
+    <fieldset class="fieldset"><legend style="position:absolute;opacity:0">Día de retiro</legend>${calendario()}</fieldset>
+    <fieldset class="fieldset" style="margin:0"><legend>Horario de retiro</legend><div class="opts two">${radio("fr","10 a 13 h",B.franja==="10 a 13 h","Mañana","10 a 13 h")}${radio("fr","16 a 19 h",B.franja==="16 a 19 h","Tarde","16 a 19 h")}</div></fieldset>`,true)+
+  blk(2,"Detalles",`<div class="opts two" style="gap:16px;align-items:start">
+      <div class="campo"><label for="bTexto">¿Le escribimos algo?</label><input id="bTexto" maxlength="30" value="${esc(B.texto)}" placeholder="Ej.: Feliz cumple Juli" aria-describedby="bTextoH"><div class="hint" id="bTextoH"><span>Se ve en la vista previa · máx. 30</span><span id="cnt">${B.texto.length}/30</span></div></div>
+      <div class="campo"><label for="bRef">Foto de referencia</label><input id="bRef" type="file" accept="image/*" aria-describedby="bRefH"><div class="hint" id="bRefH"><span>${B.ref?`Elegiste: ${esc(B.ref)}`:"En el boceto no se sube; solo se anota el nombre."}</span></div></div>
+    </div>
+    <div class="campo" style="margin:0"><label for="bCol">Colores o idea</label><textarea id="bCol" rows="2" placeholder="Ej.: tonos lila, con perlas">${esc(B.colores)}</textarea></div>`,true)+
+  blk(3,"Revisá y reservá",`${s&&r&&B.dia?`<dl class="resumen"><div><dt>Torta</dt><dd>${esc(t.nombre)}, ${s.nombre.toLowerCase()}, ${r.nombre.toLowerCase()}</dd></div><div><dt>Retiro</dt><dd>${fecha(B.dia)} · ${B.franja||"—"}</dd></div><div><dt>Texto</dt><dd>${esc(B.texto)||"—"}</dd></div><div><dt>Resta pagar al retirar</dt><dd class="price">${plata(total()-Math.round(total()*SENA))}</dd></div></dl>`:""}
+    <div class="opts two" style="gap:16px">
+      <div class="campo"><label for="bNom">Tu nombre</label><input id="bNom" autocomplete="given-name" value="${esc(B.nombre)}"></div>
+      <div class="campo"><label for="bTel">Tu WhatsApp</label><input id="bTel" type="tel" autocomplete="tel" placeholder="11 2345 6789" value="${esc(B.tel)}"></div>
+    </div>
+    <fieldset class="fieldset" style="margin:0"><legend>¿Cómo pagás la seña?</legend><div class="opts two">${radio("pago","mp",B.pago==="mp","Mercado Pago","La fecha queda reservada al instante")}${radio("pago","ef",B.pago==="ef","Efectivo","La fecha se reserva cuando Miqui recibe la seña")}</div></fieldset>`,false);
+  updConf();
+}
+function abrir(i){abierto=i; renderConf(); const b=$(`[data-blk="${i}"]`); b.focus(); b.closest(".blk").scrollIntoView({block:"nearest"});}
+$("#cfBody").addEventListener("click",e=>{const h=e.target.closest("[data-blk]"); if(h){abrir(+h.dataset.blk);return}
+  const c=e.target.closest("[data-cont]"); if(c) abrir(+c.dataset.cont+1);});
+const datosOk=()=>B.nombre.trim()&&B.tel.replace(/\D/g,"").length>=8;
+function faltan(){return [!B.tamano&&"tamaño",!B.relleno&&"relleno",!(B.dia&&capacidad(B.dia).ok)&&"día",!B.franja&&"horario",!B.nombre.trim()&&"nombre",B.tel.replace(/\D/g,"").length<8&&"WhatsApp"].filter(Boolean)}
+function updConf(){
+  const t=total(), s=TAMANOS.find(x=>x.id===B.tamano), r=RELLENOS.find(x=>x.id===B.relleno);
+  animNum($("#cfTotal"),t); animNum($("#cfSena"),Math.round(t*SENA));
+  $("#cfPicked").innerHTML=[s&&`${s.nombre} · ${s.porc}`,r&&r.nombre,B.dia&&`${fecha(B.dia)}${B.franja?" · "+B.franja:""}`,B.ref&&"Con foto de referencia"].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")||`<span>Elegí tamaño y relleno</span>`;
+  const f=faltan(); $("#cfOk").disabled=f.length>0;
+  $("#cfOk").textContent=B.pago==="mp"?`Simular pago de seña ${t?plata(Math.round(t*SENA)):""}`:"Simular pedido";
+  $("#cfFalta").textContent=f.length?"Falta: "+f.join(", "):"Todo listo. Es una simulación: no se cobra nada.";
+  const oks=[B.tamano&&B.relleno,B.dia&&B.franja&&capacidad(B.dia).ok,null,datosOk()];
+  $$("#cfBody .blk h3").forEach((h,i)=>{const tg=h.querySelector(".ok"); if(oks[i]&&!tg) h.insertAdjacentHTML("beforeend",okTag(true)); if(!oks[i]&&tg) tg.remove();});
+  $$("[data-cont]").forEach(b=>{const i=+b.dataset.cont; b.disabled=i<2&&!oks[i];});
+}
+$("#cfBody").addEventListener("change",e=>{const i=e.target;
+  if(i.name==="tam") B.tamano=i.value; if(i.name==="rel") B.relleno=i.value; if(i.name==="dia") B.dia=i.value; if(i.name==="fr") B.franja=i.value; if(i.name==="pago") B.pago=i.value;
+  if(i.id==="bRef"){B.ref=i.files[0]?.name||""; $("#bRefH span").textContent=B.ref?`Elegiste: ${B.ref}`:"";} updConf();});
+$("#cfBody").addEventListener("input",e=>{const i=e.target;
+  if(i.id==="bTexto"){B.texto=i.value; $("#cnt").textContent=`${i.value.length}/30`; $("#pvTxt").innerHTML=esc(i.value)||"&nbsp;";}
+  if(i.id==="bCol") B.colores=i.value; if(i.id==="bNom") B.nombre=i.value; if(i.id==="bTel") B.tel=i.value; updConf();});
+$("#cfOk").onclick=()=>{
+  if(faltan().length) return;
+  const t=total(), sena=Math.round(t*SENA), s=TAMANOS.find(x=>x.id===B.tamano), r=RELLENOS.find(x=>x.id===B.relleno), nom=B.nombre.trim();
+  S.pedidos.push({id:S.nextId++, tipo:"torta", dia:B.dia, hora:B.franja.replace(" a ","–"), cliente:nom, tel:B.tel, item:`${B.torta.nombre} · ${s.nombre.toLowerCase()}`, total:t, pagado:B.pago==="mp"?sena:0, estado:0, nuevo:true, img:B.torta.img,
+    brief:{Tamaño:`${s.nombre} (${s.porc})`,Relleno:r.nombre,Texto:B.texto||"—",Colores:B.colores||"—",Referencia:B.ref||"—"}});
+  save();
+  showOk(B.pago==="mp"?`Así quedaría: seña de ${plata(sena)} pagada y tu fecha reservada.`:`Así quedaría: tu pedido queda pendiente hasta que Miqui reciba la seña de ${plata(sena)} en efectivo.`,
+   `¡Hola ${nom}! 🎂 Soy Miqui.\nRecibí tu pedido: ${B.torta.nombre}, ${s.nombre.toLowerCase()}, ${r.nombre.toLowerCase()}.\nRetiro: ${fecha(B.dia,{weekday:"long",day:"numeric",month:"long"})}, de ${B.franja}.\n${B.pago==="mp"?`Seña ${plata(sena)} ✅ · Resta ${plata(t-sena)}`:`Te espero con la seña de ${plata(sena)} para confirmar la fecha.`}`, $("#dConf"));
+};
+function showOk(txt,wa,from){$("#okTxt").textContent=txt; $("#okWa").textContent=wa; swapSheet(from,$("#dOk"));}
+$("#okPanel").onclick=()=>{const d=$("#dOk"); d.close(); if(history.state?.sheet){addEventListener("popstate",()=>goPanel(),{once:true}); history.back();} else goPanel();};
+$("#dOk").addEventListener("close",()=>{$("#okTitle").textContent="¡Listo!"; $("#okCap").textContent="Mensaje que te llegaría por WhatsApp";});
+
+/* ========================= FINDE ========================= */
+const quedan=m=>m.stock-m.res-(S.carrito[m.id]||0);
+const cantCarrito=()=>Object.values(S.carrito).reduce((a,b)=>a+b,0);
+const totCarrito=()=>S.menu.reduce((a,m)=>a+(S.carrito[m.id]||0)*m.precio,0);
+let C={franja:null,nombre:"",tel:"",pago:"mp"};
+function renderFinde(){
+  $("#menu").innerHTML=(S.menu.length?"":`<li class="cerrado" role="status" style="background:var(--manteca);color:var(--ink)">Muy pronto vas a ver acá el próximo menú.</li>`)+(S.abierto?"":`<li class="cerrado" role="status">Las reservas de este finde están cerradas. ¡Volvé el lunes para ver el próximo menú!</li>`)+S.menu.map((m,i)=>{const q=quedan(m), c=S.carrito[m.id]||0, libres=m.stock-m.res;
+    const st=libres<=0?`<span class="stock no">Agotado</span>`:q<=3?`<span class="stock poco">Quedan ${q}</span>`:`<span class="stock">Quedan ${q}</span>`;
+    const ctl=(!S.abierto||libres<=0)&&!c?"":c?stepper(m,q):`<button class="add" data-mas="${m.id}" aria-label="Agregar ${esc(m.nombre)}">Agregar</button>`;
+    return `<li class="item"><span class="n">${String(i+1).padStart(2,"0")}</span>${img(m.img,m.nombre,240)}<div><div class="row"><h3>${esc(m.nombre)}</h3><i></i><span class="price">${plata(m.precio)}</span></div><div class="bottom">${st}${ctl}</div></div></li>`}).join("");
+  renderSide(); renderCartBtn();
+}
+const stepper=(m,q)=>`<span class="stepper" role="group" aria-label="Cantidad de ${esc(m.nombre)}"><button data-menos="${m.id}" aria-label="Quitar una">−</button><output aria-live="polite">${S.carrito[m.id]}</output><button data-mas="${m.id}" ${q<=0?"disabled":""} aria-label="Agregar una">+</button></span>`;
+function cartProblema(){
+  if(!S.abierto) return "Las reservas de este finde se cerraron.";
+  const m=S.menu.find(m=>(S.carrito[m.id]||0)>m.stock-m.res); if(m) return `De ${m.nombre} quedan ${Math.max(0,m.stock-m.res)}. Ajustá la cantidad.`;
+  const f=S.franjas.find(f=>f.id===C.franja); if(f&&f.usados>=f.cupo) return "Ese horario se llenó. Elegí otro.";
+  return "";
+}
+function renderSide(){
+  const fs=S.franjas.find(f=>f.id===C.franja); if(fs&&fs.usados>=fs.cupo) C.franja=null;
+  const items=S.menu.filter(m=>S.carrito[m.id]);
+  if(!items.length){$("#sideBody").innerHTML=`<p class="vacio">Todavía no agregaste porciones.<br>Elegí del menú y aparecen acá.</p>`; return;}
+  $("#sideBody").innerHTML=`<p class="aviso" id="cProb" role="alert" hidden></p>
+   <dl class="resumen">${items.map(m=>`<div><dt>${S.carrito[m.id]} × ${esc(m.nombre)}</dt><dd class="price">${plata(S.carrito[m.id]*m.precio)}</dd></div>`).join("")}</dl>
+   <fieldset class="fieldset"><legend>¿Cuándo retirás?</legend><div class="opts two">${S.franjas.map(f=>{const l=f.cupo-f.usados; return radio("cf",f.id,C.franja===f.id,f.txt.replace(" · ","<br>"),l<=0?"Completo":`${l} ${l===1?"lugar":"lugares"}`,l<=0)}).join("")}</div></fieldset>
+   <div class="campo"><label for="cNom">Tu nombre</label><input id="cNom" autocomplete="given-name" value="${esc(C.nombre)}"></div>
+   <div class="campo"><label for="cTel">Tu WhatsApp</label><input id="cTel" type="tel" autocomplete="tel" placeholder="11 2345 6789" value="${esc(C.tel)}"></div>
+   <fieldset class="fieldset"><legend>¿Cómo pagás?</legend><div class="opts">${radio("cp","mp",C.pago==="mp","Mercado Pago ahora","Tu reserva queda confirmada")}${radio("cp","ef",C.pago==="ef","Efectivo al retirar","Te la guardamos hasta tu horario")}</div></fieldset>
+   <div class="totbar"><span>Total</span><b id="cTotal"></b></div><button class="btn block" id="cOk"></button>`;
+  updCart();
+}
+function updCart(){
+  const pr=cartProblema(), el=$("#cProb"); if(el){el.textContent=pr; el.hidden=!pr;}
+  if(!$("#cOk")) return;
+  $("#cTotal").textContent=plata(totCarrito());
+  $("#cOk").disabled=!!pr||!(C.franja&&C.nombre.trim()&&C.tel.replace(/\D/g,"").length>=8&&cantCarrito());
+  $("#cOk").textContent=C.pago==="mp"?`Simular pago ${plata(totCarrito())}`:"Simular reserva";
+}
+function renderCartBtn(){const n=cantCarrito(); $("#cartN").textContent=n; $("#cartbtn").setAttribute("aria-label",`Tu pedido: ${n} ${n===1?"porción":"porciones"}`);}
+$("#menu").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return;
+  const id=b.dataset.mas||b.dataset.menos, m=S.menu.find(x=>x.id===id); if(!m) return;
+  if(b.dataset.mas&&quedan(m)>0) S.carrito[id]=(S.carrito[id]||0)+1;
+  if(b.dataset.menos){S.carrito[id]--; if(!S.carrito[id]) delete S.carrito[id];}
+  save(); renderFinde();
+  ($(`#menu [data-${b.dataset.mas?"mas":"menos"}="${id}"]:not([disabled])`)||$(`#menu [data-mas="${id}"]:not([disabled])`)||$(`#menu [data-menos="${id}"]`))?.focus();
+  if(b.dataset.mas){const p=$("#cartbtn"); p.classList.remove("bump"); void p.offsetWidth; p.classList.add("bump");}
+});
+$("#sideBody").addEventListener("change",e=>{const i=e.target; if(i.name==="cf") C.franja=i.value; if(i.name==="cp") C.pago=i.value; updCart();});
+$("#sideBody").addEventListener("input",e=>{const i=e.target; if(i.id==="cNom") C.nombre=i.value; if(i.id==="cTel") C.tel=i.value; updCart();});
+$("#sideBody").addEventListener("click",e=>{ if(!e.target.closest("#cOk")) return;
+  const prob=cartProblema(); if(prob){toast(prob); renderSide(); return;}
+  const f=S.franjas.find(x=>x.id===C.franja), t=totCarrito(), nom=C.nombre.trim();
+  const det=S.menu.filter(m=>S.carrito[m.id]).map(m=>`${S.carrito[m.id]} ${m.nombre}`).join(", ");
+  S.pedidos.push({id:S.nextId++, tipo:"finde", dia:f.dia, hora:f.txt.split("· ")[1].replace(" a ","–"), cliente:nom, tel:C.tel, item:det, items:{...S.carrito}, total:t, pagado:C.pago==="mp"?t:0, estado:0, nuevo:true, img:S.menu.find(m=>S.carrito[m.id]).img});
+  S.menu.forEach(m=>m.res+=S.carrito[m.id]||0); f.usados++; S.carrito={}; C.franja=null; save();
+  $("#okTxt").textContent=C.pago==="mp"?`Así quedaría: ${plata(t)} pagados y tus porciones reservadas.`:`Así quedaría: tus porciones reservadas, pagás ${plata(t)} al retirar.`;
+  $("#okWa").textContent=`¡Hola ${nom}! 🍰 Soy Miqui.\nReservaste: ${det}.\nRetiro: ${f.txt}.\n${C.pago==="mp"?"Pago recibido ✅":`Pagás ${plata(t)} en efectivo al retirar.`}`;
+  renderFinde(); $("#side").focus(); openSheet($("#dOk"));
+});
+
+/* ========================= MESA ========================= */
+function renderMesa(){
+  $("#mesas").innerHTML=MESAS.map(m=>`<article><div class="ph" style="aspect-ratio:4/5">${img(m.img,m.alt,600)}<span class="tag">Foto ilustrativa</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:10px"><h2 style="font-size:22px">${m.nombre}</h2><span class="price">desde ${plata(m.desde)}</span></div>
+    <p class="muted small" style="margin-bottom:14px">${m.piezas}</p><button class="btn ghost block" data-consulta="${m.id}">Consultar mi idea</button></article>`).join("");
+}
+let M={};
+function openMesa(id){
+  const m=MESAS.find(x=>x.id===id); M={nombre:m?m.nombre:"Torta de boda"};
+  $("#mTitle").textContent=M.nombre;
+  $("#mBody").innerHTML=`<p class="muted" style="margin-bottom:16px">Completá lo que sepas y se arma el mensaje para Miqui.</p>
+   <div class="opts two" style="gap:14px"><div class="campo"><label for="mFecha">Fecha del evento</label><input id="mFecha" type="date" min="2026-11-07"></div>
+   <div class="campo"><label for="mInv">¿Cuántas personas?</label><input id="mInv" type="number" min="1" placeholder="Ej.: 40"></div></div>
+   <div class="campo"><label for="mIdea">Tu idea</label><textarea id="mIdea" rows="4" placeholder="Temática, colores, sabores…"></textarea></div>`;
+  openSheet($("#dMesa"));
+}
+$("#mOk").onclick=()=>{
+  const f=$("#mFecha").value, inv=$("#mInv").value, idea=$("#mIdea").value.trim();
+  $("#okTitle").textContent="Mensaje listo"; $("#okCap").textContent="Mensaje que se enviaría a Miqui";
+  showOk("Así se abriría WhatsApp con tu consulta armada. En el boceto no se envía nada.",
+    `¡Hola Miqui! Quiero consultar por: ${M.nombre}.\n${f?`Fecha: ${fecha(f,{day:"numeric",month:"long"})}\n`:""}${inv?`Personas: ${inv}\n`:""}${idea?`Idea: ${idea}`:""}`, $("#dMesa"));
+};
+
+/* ========================= STORIES ========================= */
+let stG=0, stI=0, stTimer=null;
+let stAnim=null, stPaused=false;
+function setPause(v){stPaused=v; const b=$("#stPause"); b.setAttribute("aria-pressed",v); b.setAttribute("aria-label",v?"Reanudar historias":"Pausar historias"); b.textContent=v?"▶":"❚❚";
+  if(!stAnim) return; if(v){clearTimeout(stTimer); stAnim.pause();} else {stAnim.play(); clearTimeout(stTimer); stTimer=setTimeout(nextSlide,Math.max(0,5000-(stAnim.currentTime||0)));}}
+
+function openStory(g){stG=g;stI=0;$("#stPause").hidden=reduce;openSheet($("#dStory"));setPause(false);showSlide();}
+function showSlide(){
+  const g=STORIES[stG], s=g.slides[stI];
+  $("#stImg").src=U(s.img,800); $("#stImg").alt=s.h; $("#stName").textContent=g.nombre;
+  $("#stH").textContent=s.h; $("#stP").textContent=s.p;
+  const c=$("#stCta"); c.hidden=!s.cta; if(s.cta){c.textContent=s.cta[0]; c.onclick=()=>{closeSheet($("#dStory")); tab(s.cta[1]);};}
+  $("#stBars").innerHTML=g.slides.map((_,k)=>`<i class="${k<stI?"done":""}"><b></b></i>`).join("");
+  clearTimeout(stTimer);
+  if(!reduce){stAnim=$("#stBars i:nth-child("+(stI+1)+") b").animate([{width:"0%"},{width:"100%"}],{duration:5000,fill:"forwards"}); if(stPaused) stAnim.pause(); else stTimer=setTimeout(nextSlide,5000);}
+  else $("#stBars i:nth-child("+(stI+1)+")").classList.add("done");
+}
+function nextSlide(){const g=STORIES[stG]; if(stI<g.slides.length-1){stI++;showSlide()} else if(stG<STORIES.length-1){stG++;stI=0;showSlide()} else closeSheet($("#dStory"));}
+function prevSlide(){if(stI>0){stI--;showSlide()} else if(stG>0){stG--;stI=STORIES[stG].slides.length-1;showSlide()} else showSlide();}
+function stopStory(){clearTimeout(stTimer)}
+$("#stNext").onclick=nextSlide; $("#stPrev").onclick=prevSlide; $("#stPause").onclick=()=>setPause(!stPaused);
+function hold(v){ if(!stAnim||stPaused) return; if(v){clearTimeout(stTimer); stAnim.pause();} else {stAnim.play(); clearTimeout(stTimer); stTimer=setTimeout(nextSlide,Math.max(0,5000-(stAnim.currentTime||0)));} }
+[["mouseenter",1],["mouseleave",0],["focusin",1],["focusout",0]].forEach(([e,v])=>$(".st-wrap").addEventListener(e,()=>hold(!!v)));
+$("#dStory").addEventListener("close",stopStory);
+$("#dStory").addEventListener("keydown",e=>{if(e.key==="ArrowRight")nextSlide(); if(e.key==="ArrowLeft")prevSlide();});
+
+/* ========================= PANEL ========================= */
+let pDia="semana";
+function goPanel(){vt(()=>{$("#tienda").hidden=true;$("#panel").hidden=false;$("#toast").hidden=true;renderPanel();scrollTo(0,0)}); if(location.hash!=="#panel") history.replaceState(history.state,"","#panel");}
+function goTienda(){vt(()=>{$("#panel").hidden=true;$("#tienda").hidden=false;renderAll();scrollTo(0,0)}); history.replaceState(history.state,"",location.pathname+location.search);}
+$("#irPanel").onclick=goPanel; $("#irTienda").onclick=goTienda;
+$$("[data-ptab]").forEach(b=>b.onclick=()=>vt(()=>{
+  $$("#panel .view").forEach(v=>v.classList.toggle("on",v.id==="p-"+b.dataset.ptab));
+  $$("[data-ptab]").forEach(x=>x.dataset.ptab===b.dataset.ptab?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));
+  renderPanel(); scrollTo(0,0);
+}));
+const DIAS_P=[["semana","Toda la semana"],[DEMO_HOY,"Hoy · mié 4"],["2026-11-07","Sáb 7"],["2026-11-08","Dom 8"]];
+function orderCard(p){
+  const saldo=p.total-p.pagado, pago=saldo<=0?`<span class="badge pago">Pagado</span>`:p.pagado?`<span class="badge debe">Seña ${plata(p.pagado)} · resta ${plata(saldo)}</span>`:`<span class="badge debe">Cobrar ${plata(saldo)}</span>`;
+  const acc=ACCION[p.estado];
+  return `<article class="order${p.nuevo?" nuevo":""}"><div class="o-top">${img(p.img,"",96)}<div><h3>${esc(p.cliente)}</h3><span class="hora">${fecha(p.dia,{weekday:"short",day:"numeric"})} · ${esc(p.hora)}</span></div></div>
+    <p class="o-item">${esc(p.item)}</p><div class="badges">${p.nuevo?`<span class="badge new">Recién llegado</span>`:""}${pago}</div>
+    ${acts(p,acc,saldo)}
+    ${p.estado?`<button class="undo" data-prev="${p.id}">Volver a «${ESTADOS[p.estado-1]}»</button>`:""}</article>`;
+}
+let pVista="lista";
+const acts=(p,acc,saldo)=>`<div class="o-acts">${acc?`<button class="btn" data-next="${p.id}">${acc}</button>`:`<button class="btn ghost" disabled>Entregada ✓</button>`}
+  <button class="ico" data-wa="${p.id}" aria-label="Escribirle a ${esc(p.cliente)} por WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg></button>
+  <button class="ico" data-cobrar="${p.id}" aria-label="${saldo>0?"Marcar cobrado":"Ya está cobrado"}" title="Marcar cobrado" ${saldo>0?"":"disabled style='opacity:.4'"}><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></button></div>`;
+function payBadge(p){const saldo=p.total-p.pagado; return saldo<=0?`<span class="badge pago">Pagado</span>`:p.pagado?`<span class="badge debe">Seña ${plata(p.pagado)} · resta ${plata(saldo)}</span>`:`<span class="badge debe">Cobrar ${plata(saldo)}</span>`;}
+function orderRow(p){
+  const saldo=p.total-p.pagado, acc=ACCION[p.estado];
+  return `<article class="rowo${p.nuevo?" nuevo":""}"><span class="t">${esc(p.hora)}</span>${img(p.img,"",112)}<div><h3>${esc(p.cliente)}${p.nuevo?` <span class="badge new">Recién llegado</span>`:""}</h3><p class="it">${esc(p.item)}</p></div>
+    <div class="badges"><span class="badge" style="background:var(--rosa)">${ESTADOS[p.estado]}</span>${payBadge(p)}</div>
+    <div class="acts">${acts(p,acc,saldo)}
+    ${p.estado?`<button class="undo" data-prev="${p.id}">Volver a «${ESTADOS[p.estado-1]}»</button>`:""}</div></article>`;
+}
+function renderPanel(){
+  $("#diasP").innerHTML=DIAS_P.map(([k,v])=>`<button class="chip" data-pd="${k}" aria-pressed="${k===pDia}">${v}</button>`).join("");
+  const l=S.pedidos.filter(p=>pDia==="semana"||p.dia===pDia).sort((a,b)=>a.dia.localeCompare(b.dia)||a.hora.localeCompare(b.hora));
+  const tortas=l.filter(p=>p.tipo==="torta").length, porc=l.filter(p=>p.items).reduce((a,p)=>a+Object.values(p.items).reduce((x,y)=>x+y,0),0), cob=l.reduce((a,p)=>a+p.pagado,0), deb=l.reduce((a,p)=>a+p.total-p.pagado,0);
+  $("#stats").innerHTML=`<div class="stat"><b>${l.length}</b><span>pedidos</span></div><div class="stat"><b>${tortas} · ${porc}</b><span>tortas · porciones</span></div><div class="stat"><b>${plata(cob)}</b><span>cobrado</span></div><div class="stat"><b>${plata(deb)}</b><span>a cobrar al retirar</span></div>`;
+  $("#vista").innerHTML=[["lista","Lista"],["tablero","Tablero"]].map(([k,v])=>`<button class="chip" data-vista="${k}" aria-pressed="${k===pVista}">${v}</button>`).join("");
+  if(pVista==="lista"){const dias=[...new Set(l.map(p=>p.dia))];
+    $("#kanban").className=""; $("#kanban").innerHTML=dias.map(d=>`<h2 class="dayh">${fecha(d,{weekday:"long",day:"numeric",month:"long"})}${d===DEMO_HOY?" · hoy":""}</h2><div class="rows">${l.filter(p=>p.dia===d).map(orderRow).join("")}</div>`).join("")||`<p class="vacio">No hay retiros para este día.</p>`;}
+  else { $("#kanban").className="kanban";
+  $("#kanban").innerHTML=ESTADOS.map((e,i)=>{const col=l.filter(p=>p.estado===i); return `<section class="col" aria-label="${e}"><h2>${e}<span>${col.length}</span></h2>${col.map(orderCard).join("")||`<p class="vacio">Nada por acá</p>`}</section>`}).join("");}
+  const tot={}; S.pedidos.filter(p=>p.items).forEach(p=>Object.entries(p.items).forEach(([k,v])=>tot[k]=(tot[k]||0)+v));
+  $("#prodlist").innerHTML=S.menu.filter(m=>tot[m.id]).map(m=>`<li><label><input type="checkbox" data-hecho="${m.id}" ${S.hechos[m.id]?"checked":""}><span>${esc(m.nombre)}<br><small class="muted">${Math.ceil(tot[m.id]/8)} ${Math.ceil(tot[m.id]/8)===1?"torta":"tortas"} de 8 porciones</small></span><span class="cant">${tot[m.id]}</span></label></li>`).join("")||`<p class="vacio">Sin porciones reservadas.</p>`;
+  $("#briefs").innerHTML=S.pedidos.filter(p=>p.brief).sort((a,b)=>a.dia.localeCompare(b.dia)).map(p=>`<div class="brief"><b>${esc(p.cliente)} · ${fecha(p.dia)} ${esc(p.hora)}</b><dl>${Object.entries(p.brief).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>`).join("");
+  $("#tog").setAttribute("aria-checked",S.abierto); $("#swTxt").textContent=S.abierto?"Reservas abiertas":"Reservas cerradas";
+  MiWeb.renderMenuEditor(); MiWeb.renderWebEditor();
+}
+$("#vista").addEventListener("click",e=>{const b=e.target.closest("[data-vista]"); if(b){pVista=b.dataset.vista; vt(()=>{renderPanel(); $(`[data-vista="${pVista}"]`).focus();})}});
+$("#diasP").addEventListener("click",e=>{const b=e.target.closest("[data-pd]"); if(b){pDia=b.dataset.pd; vt(()=>{renderPanel(); $(`[data-pd="${pDia}"]`).focus();})}});
+$("#kanban").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return; const id=+(b.dataset.next||b.dataset.prev||b.dataset.wa||b.dataset.cobrar); const p=S.pedidos.find(x=>x.id===id); if(!p) return;
+  const refocus=()=>($(`#kanban [data-next="${id}"]`)||$(`#kanban [data-prev="${id}"]`)||$("#kanban button"))?.focus();
+  if(b.dataset.next){const antes=p.estado; p.estado++; p.nuevo=false; save(); vt(()=>{renderPanel(); refocus();});
+    toast(`${p.cliente}: ${ESTADOS[p.estado]}`,()=>{p.estado=antes;save();renderPanel();refocus();});
+    if(p.estado===2) setTimeout(()=>openWa(p,`¡Hola ${p.cliente}! 💗 Tu pedido ya está listo. Te espero en tu horario (${p.hora}). ${p.total>p.pagado?`Resta ${plata(p.total-p.pagado)}.`:""}`),400);}
+  if(b.dataset.prev){p.estado--; save(); vt(()=>{renderPanel(); refocus();});}
+  if(b.dataset.wa) openWa(p,`¡Hola ${p.cliente}! Soy Miqui 😊 `);
+  if(b.dataset.cobrar){const antes=p.pagado; p.pagado=p.total; save(); renderPanel(); refocus(); toast(`Cobrado: ${plata(p.total-antes)} de ${p.cliente}`,()=>{p.pagado=antes;save();renderPanel()});}
+});
+function openWa(p,msg){$("#waTitle").textContent=`Mensaje para ${p.cliente}`; $("#waTxt").value=msg; openSheet($("#dWa"));}
+$("#waOk").onclick=()=>{closeSheet($("#dWa")); toast("En la versión real se abre WhatsApp con este mensaje.");};
+$("#prodlist").addEventListener("change",e=>{const c=e.target.dataset.hecho; if(c){S.hechos[c]=e.target.checked; save();}});
+$("#tog").onclick=()=>{
+  $("#siTitle").textContent=S.abierto?"¿Cerrar las reservas?":"¿Abrir las reservas?";
+  $("#siTxt").textContent=S.abierto?"Nadie más va a poder reservar porciones para este finde. Los pedidos que ya tenés no cambian.":"Las clientas van a poder volver a reservar porciones.";
+  $("#siOk").textContent=S.abierto?"Sí, cerrar reservas":"Sí, abrir reservas";
+  openSheet($("#dSi"));
+};
+$("#siOk").onclick=()=>{S.abierto=!S.abierto; save(); closeSheet($("#dSi")); renderPanel(); toast(S.abierto?"Reservas abiertas":"Reservas cerradas");};
+$("#reset").onclick=()=>{S=fresh(); C.franja=null; save(); renderPanel(); toast("Demo reiniciada");};
+
+const SEQ=true;
+/* ===== Cómo pedir: animación al entrar en pantalla (una vez) ===== */
+(function(){const c=document.getElementById("como"); if(!c||reduce||!("IntersectionObserver" in window)) return;
+  c.classList.add("anim"); const steps=[...c.querySelectorAll(".step")];
+  if(SEQ){ const o=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ o.disconnect(); steps.forEach((s,i)=>setTimeout(()=>s.classList.add("on"),i*940)); } },{threshold:.35}); o.observe(c.querySelector(".steps"));
+    steps.forEach(s=>s.addEventListener("mouseenter",()=>{ if(!s.classList.contains("on")) return; s.classList.remove("on","skip"); void s.offsetWidth; s.classList.add("on"); }));
+  } else { const o=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; if(e.boundingClientRect.top<0) e.target.classList.add("skip"); e.target.classList.add("on"); o.unobserve(e.target); }),{threshold:.5}); steps.forEach(s=>o.observe(s)); }
+})();
+
+/* ===== Mini Miqui: saluda una vez al llegar al final ===== */
+(function(){const f=document.getElementById("foot2"); if(!f||reduce||!("IntersectionObserver" in window)) return;
+  f.classList.add("anim"); const o=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ f.classList.add("on"); o.disconnect(); } },{threshold:.5}); o.observe(f.querySelector(".mm-slot"));
+})();
+
+/* ===== Mesa dulce: foto sube y la línea se dibuja ===== */
+(function(){const m=document.getElementById("mesa2"); if(!m||reduce||!("IntersectionObserver" in window)) return;
+  m.classList.add("anim"); const o=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ m.classList.add("on"); o.disconnect(); } },{threshold:.3}); o.observe(m);
+})();
+/* ========================= INIT ========================= */
+function renderAll(){renderInicio(); renderTortas(); renderFinde(); renderMesa(); MiWeb.applyWeb();}
+MiWeb.bind();
+renderAll();
+if(location.hash==="#panel") goPanel();
+</script>
+</body>
+</html>

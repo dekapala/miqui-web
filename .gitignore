@@ -1,0 +1,9 @@
+dist/
+miqui-web-b-cloudflare.zip
+node_modules/
+.wrangler/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
